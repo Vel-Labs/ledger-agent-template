@@ -6,7 +6,7 @@
   "intent": "publish_admin_setting",
   "ledgerLayer": "app_action_to_ledger_hardware_gate",
   "validationMode": "fixture_ledger_validation",
-  "reviewerNote": "App gate opened at http://127.0.0.1:49294/; fixture Ledger validation passed; protected action remains human-approval gated.",
+  "reviewerNote": "App gate opened at http://127.0.0.1:49549/; fixture Ledger validation passed; protected action remains human-approval gated.",
   "hardwareVerified": false,
   "browser": {
     "attempted": false,
@@ -15,7 +15,7 @@
   "appRequest": null,
   "serverReady": true,
   "serverLogs": [
-    "DMK skills app demo: http://127.0.0.1:49294/",
+    "DMK skills app demo: http://127.0.0.1:49549/",
     "Ledger mode: fixture fallback"
   ],
   "protectedAction": {
@@ -32,7 +32,7 @@
     "hardwareVerified": false,
     "expectedDevicePrompt": "Ledger would ask reviewer to confirm publishing the setting",
     "attestationMessage": "DRY RUN LEDGER APP GATE ATTESTATION ONLY\nNo transaction signing or broadcast.\nIntent: publish_admin_setting\nAction: publish_setting\nSetting: Maintenance window at 19:00 UTC",
-    "createdAt": "2026-05-20T15:15:13.690Z",
+    "createdAt": "2026-05-20T15:22:58.099Z",
     "actionSource": {
       "action": "publish_setting",
       "setting": "Maintenance window at 19:00 UTC"
@@ -40,7 +40,7 @@
   },
   "evidence": {
     "fixture": "02-dmk-skills-app/fixtures/install-plan.json",
-    "browserUrl": "http://127.0.0.1:49294/"
+    "browserUrl": "http://127.0.0.1:49549/"
   },
-  "createdAt": "2026-05-20T15:15:13.691Z"
+  "createdAt": "2026-05-20T15:22:58.101Z"
 }

@@ -5,6 +5,7 @@ const requestSecret = document.querySelector("#request-secret");
 const approveSecret = document.querySelector("#approve-secret");
 const summary = document.querySelector("#summary");
 const receipt = document.querySelector("#receipt");
+const guidedStart = document.querySelector("#guided-start");
 
 const credentialStorageKey = "hardware-auth-demo-credential-id";
 
@@ -269,3 +270,14 @@ approveSecret.addEventListener("click", async () => {
     renderFailure("approve_secret_access_failed", error);
   }
 });
+
+function applyGuidedStart() {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get("guided") !== "session") return;
+
+  guidedStart.hidden = false;
+  sessionStatus.textContent = "Security Key app request was staged by the CLI. Complete Register/sign in to open the browser session.";
+  signin.focus();
+}
+
+applyGuidedStart();

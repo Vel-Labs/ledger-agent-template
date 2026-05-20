@@ -39,11 +39,16 @@
       }
 
       .test-notes,
-      .summary {
+      .summary,
+      .guided-start {
         background: #eef6ff;
         border: 1px solid #b6d7f5;
         margin: 12px 0;
         padding: 12px;
+      }
+
+      .guided-start[hidden] {
+        display: none;
       }
 
       .receipt-grid {
@@ -75,6 +80,9 @@
       <section>
         <h2>Session</h2>
         <p class="muted">Before registering or signing in, unlock the Ledger and open the Security Key app on the device.</p>
+        <div id="guided-start" class="guided-start" hidden>
+          CLI staged this lane and requested the Security Key app. Click Register or sign in, complete the Ledger prompt, then return to the CLI.
+        </div>
         <p id="session-status">No authenticated session.</p>
         <button id="signin">Register or sign in with Security Key</button>
       </section>

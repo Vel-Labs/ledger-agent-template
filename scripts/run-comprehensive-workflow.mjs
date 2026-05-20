@@ -58,7 +58,7 @@ async function chooseLedgerMode(rl, label) {
   return answer !== "demo" && answer !== "fixture";
 }
 
-async function requestLedgerApp(rl, appNames) {
+async function requestLedgerApp(rl, appNames, options = {}) {
   if (autoYes) {
     return {
       requested: false,
@@ -67,6 +67,10 @@ async function requestLedgerApp(rl, appNames) {
   }
 
   const names = Array.isArray(appNames) ? appNames : [appNames];
+  const {
+    advisory = false,
+    advisoryReason = "The following validation command is the source of truth."
+  } = options;
   const attempts = [];
   for (const appName of names) {
     const result = runCommand("node", ["scripts/open-ledger-app.mjs", appName], { cwd: root });
@@ -83,6 +87,17 @@ async function requestLedgerApp(rl, appNames) {
 
   const last = attempts.at(-1)?.command;
   console.log(`Ledger app request did not complete automatically: ${last?.stderr || last?.stdout || "unknown error"}`);
+  if (advisory) {
+    console.log(`${advisoryReason} Continuing without a manual confirmation prompt.`);
+    return {
+      requested: true,
+      appName: names[0],
+      attempts,
+      advisory: true,
+      manuallyContinued: false
+    };
+  }
+
   const proceed = await confirm(rl, `Open ${names.join(" or ")} manually on the Ledger, then continue?`, true);
   return {
     requested: true,
@@ -260,7 +275,12 @@ async function runHeadlessLane(rl) {
   ]);
 
   const useRealLedger = await chooseLedgerMode(rl, "Headless Ledger validation");
-  const appRequest = useRealLedger ? await requestLedgerApp(rl, "Ethereum") : null;
+  const appRequest = useRealLedger
+    ? await requestLedgerApp(rl, "Ethereum", {
+      advisory: true,
+      advisoryReason: "If Ethereum is already open, the app-open APDU can be rejected even though the app is ready."
+    })
+    : null;
 
   const cwd = resolve(root, "01-headless-cli");
   const propose = runCommand("node", ["src/agent-cli.mjs", "propose", "fixtures/send-draft.json"], { cwd });
@@ -320,7 +340,12 @@ async function runAppGateLane(rl) {
     const readyLog = await waitForServerLog(server.logs, /http:\/\/127\.0\.0\.1:(\d+)\//);
     const url = readyLog?.[0] ?? `http://127.0.0.1:${port}/`;
     const ready = await waitForHttp(url);
-    const appRequest = useRealLedger ? await requestLedgerApp(rl, "Ethereum") : null;
+    const appRequest = useRealLedger
+      ? await requestLedgerApp(rl, "Ethereum", {
+        advisory: true,
+        advisoryReason: "If Ethereum is already open from lane 1, the app-open APDU can be rejected even though the app is ready."
+      })
+      : null;
     let apiReceipt;
     let apiStatus = "failed";
     let apiError;
@@ -381,7 +406,7 @@ async function runAuthLane(rl) {
 
   printSection("Lane 3: Hardware Auth Browser Flow", [
     "This lane starts a localhost server for the WebAuthn/Security Key app and opens it in the browser.",
-    "Complete the browser flow manually: sign in, run Ledger validation, agent requests secret, approve secret access.",
+    "The CLI stages the Security Key app and the browser sign-in step, then you complete the Ledger approval steps in the browser.",
     "The receipt records your observation; production still needs server-side WebAuthn verification."
   ]);
 
@@ -392,10 +417,22 @@ async function runAuthLane(rl) {
       await rl.question("Before demo 3, exit the current Ledger app to the dashboard. The app-open request can fail while Ethereum is still foregrounded. Press Enter to request the Security Key app.");
       appRequest = await requestLedgerApp(rl, ["Security Key", "FIDO U2F"]);
     }
-    const browser = openBrowser(server.url);
+    const guidedUrl = `${server.url}?guided=session`;
+    const browser = openBrowser(guidedUrl);
+    if (!autoYes) {
+      await rl.question([
+        `Browser opened at ${guidedUrl}.`,
+        "Click the focused Register/sign in button and complete the Security Key prompt.",
+        "When the page says the Security Key session opened, press Enter here to continue."
+      ].join("\n"));
+    }
     const completed = autoYes
       ? await waitForHttp(server.url)
-      : await confirm(rl, "Did you complete the browser auth flow through secret approval?", false);
+      : await confirm(
+        rl,
+        "Now click Run Ledger validation, Agent requests secret, and Approve secret access in the browser. Did the flow complete through secret approval?",
+        false
+      );
     const reviewerNote = await note(
       rl,
       "Paste or summarize the final browser receipt / observation:",
@@ -419,7 +456,7 @@ async function runAuthLane(rl) {
       browser,
       evidence: {
         fixture: "03-hardware-auth/fixtures/auth-policy.json",
-        browserUrl: server.url,
+        browserUrl: guidedUrl,
         serverVerification: false
       }
     });
