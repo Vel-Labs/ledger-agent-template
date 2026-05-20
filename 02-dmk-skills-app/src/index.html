@@ -15,57 +15,18 @@
         min-height: 100vh;
       }
 
-      main {
-        margin: 48px auto;
-        max-width: 720px;
-        padding: 0 24px;
-      }
-
-      section {
-        border-top: 1px solid #d8dee4;
-        padding: 20px 0;
-      }
-
-      label,
-      input,
-      button {
-        display: block;
-      }
-
-      input {
-        box-sizing: border-box;
-        margin-top: 8px;
-        max-width: 520px;
-        padding: 10px;
-        width: 100%;
-      }
-
-      button {
-        margin-top: 12px;
-        padding: 10px 14px;
-      }
-
-      button:disabled {
-        cursor: not-allowed;
-        opacity: 0.55;
-      }
-
-      pre {
-        background: #f6f8fa;
-        overflow: auto;
-        padding: 12px;
-      }
-
-      .summary {
-        background: #eef6ff;
-        border: 1px solid #b6d7f5;
-        margin-top: 16px;
-        padding: 12px;
-      }
-
-      .muted {
-        color: #52616f;
-      }
+      main { margin: 40px auto; max-width: 1120px; padding: 0 28px; }
+      section { border-top: 1px solid #d8dee4; padding: 20px 0; }
+      label, input, button { display: block; }
+      input { box-sizing: border-box; margin-top: 8px; max-width: 640px; padding: 10px; width: 100%; }
+      button { margin-top: 12px; padding: 10px 14px; }
+      button:disabled { cursor: not-allowed; opacity: 0.55; }
+      pre { background: #f6f8fa; overflow: auto; padding: 12px; }
+      .summary, .action-state { background: #eef6ff; border: 1px solid #b6d7f5; margin: 12px 0; padding: 12px; }
+      .receipt-grid { display: grid; gap: 16px; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+      .receipt-grid h3 { margin-bottom: 8px; }
+      .muted { color: #52616f; }
+      @media (max-width: 760px) { .receipt-grid { grid-template-columns: 1fr; } }
     </style>
   </head>
   <body>
@@ -91,9 +52,18 @@
 
       <section>
         <h2>Protected Action</h2>
+        <div id="protected-action" class="action-state">Protected action: waiting for Ledger validation.</div>
         <button id="publish" disabled>Publish setting</button>
-        <div id="summary" class="summary" aria-live="polite">No gate result yet.</div>
-        <pre id="receipt">No receipt yet.</pre>
+        <div class="receipt-grid">
+          <div>
+            <h3>Human Readable</h3>
+            <div id="summary" class="summary" aria-live="polite">No gate result yet.</div>
+          </div>
+          <div>
+            <h3>Agent Readable</h3>
+            <pre id="receipt">No receipt yet.</pre>
+          </div>
+        </div>
       </section>
     </main>
     <script type="module" src="./app.js"></script>

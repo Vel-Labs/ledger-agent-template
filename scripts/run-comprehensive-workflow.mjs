@@ -44,8 +44,18 @@ async function confirm(rl, prompt, fallback = true) {
 
 async function note(rl, prompt, fallback) {
   if (autoYes) return fallback;
-  const answer = (await rl.question(`${prompt}\n> `)).trim();
+  console.log(`${prompt}`);
+  console.log(`Default: ${fallback}`);
+  const answer = (await rl.question("Press Enter to accept, or type an override:\n> ")).trim();
   return answer || fallback;
+}
+
+async function chooseLedgerMode(rl, label) {
+  if (autoYes) return false;
+  const answer = (await rl.question(
+    `${label}: press Enter for fixture mode, or unlock the Ledger, open the Ethereum app, type "real", and press Enter to submit real USB attestation.\n> `
+  )).trim().toLowerCase();
+  return answer === "real" || answer === "r";
 }
 
 function step(id, title, status, payload) {
@@ -206,15 +216,7 @@ async function runHeadlessLane(rl) {
     "No transaction signing or broadcast is performed."
   ]);
 
-  const useRealLedger = await confirm(
-    rl,
-    "Use real USB Ledger message attestation for this lane? If yes, unlock the Ledger and open the Ethereum app before continuing.",
-    false
-  );
-
-  if (useRealLedger && !autoYes) {
-    await rl.question("Open the Ethereum app on the Ledger Signer, then press Enter to submit the validation command.");
-  }
+  const useRealLedger = await chooseLedgerMode(rl, "Headless Ledger validation");
 
   const cwd = resolve(root, "01-headless-cli");
   const propose = runCommand("node", ["src/agent-cli.mjs", "propose", "fixtures/send-draft.json"], { cwd });
@@ -228,13 +230,13 @@ async function runHeadlessLane(rl) {
   const proposalReceipt = loadJson("01-headless-cli/receipts/latest-proposal.json");
   const validationReceipt = loadJson("01-headless-cli/receipts/latest-ledger-validation.json");
   const approvalReceipt = approve?.passed ? loadJson("01-headless-cli/receipts/latest-approval.json") : null;
-  const reviewerNote = await note(
-    rl,
-    "Headless lane observation:",
-    validate.passed
-      ? "Headless proposal, Ledger validation, and approval receipts were generated."
-      : "Headless Ledger validation did not pass; inspect stderr and receipt failure."
-  );
+  const defaultObservation = validate.passed && approvalReceipt
+    ? validationReceipt.hardwareVerified
+      ? `Headless CLI completed; Ledger Signer interaction verified for ${validationReceipt.ledgerAddress}; approval receipt generated; no signing or broadcast performed.`
+      : "Headless CLI completed in fixture mode; proposal, validation, and approval receipts generated; no signing or broadcast performed."
+    : "Headless CLI needs review; validation or approval did not complete.";
+  const reviewerNote = defaultObservation;
+  console.log(`Observation: ${reviewerNote}`);
 
   return step("lane-01-proposal", "Headless proposal and approval", propose.passed && validate.passed && approve?.passed ? "passed" : "needs_review", {
     sourceDemo: "01-headless-cli",
@@ -262,11 +264,7 @@ async function runAppGateLane(rl) {
     "The harness also submits the protected action intent to the server API and records the validation receipt."
   ]);
 
-  const useRealLedger = await confirm(
-    rl,
-    "Use real USB Ledger message attestation for the app gate? If yes, unlock the Ledger and open the Ethereum app before continuing.",
-    false
-  );
+  const useRealLedger = await chooseLedgerMode(rl, "Protected app Ledger validation");
   const port = await getFreePort();
   const server = startNodeServer(["02-dmk-skills-app/src/server.mjs"], {
     PORT: String(port),
@@ -277,10 +275,6 @@ async function runAppGateLane(rl) {
     const url = `http://127.0.0.1:${port}/`;
     const ready = await waitForHttp(url);
     const browser = openBrowser(url);
-    if (useRealLedger && !autoYes) {
-      await rl.question("Open the Ethereum app on the Ledger Signer, then press Enter to submit the protected action validation.");
-    }
-
     let apiReceipt;
     let apiStatus = "failed";
     let apiError;
@@ -300,13 +294,13 @@ async function runAppGateLane(rl) {
       apiError = error.message;
     }
 
-    const reviewerNote = await note(
-      rl,
-      `Browser opened at ${url}. Record what you observed in the app gate UI:`,
-      ready && apiStatus === "passed"
-        ? "App gate server opened and API validation passed."
-        : "App gate needs review; browser or API validation did not pass."
-    );
+    const defaultObservation = ready && apiStatus === "passed"
+      ? apiReceipt.hardwareVerified
+        ? `App gate opened at ${url}; Ledger Signer interaction verified; protected action remains human-approval gated.`
+        : `App gate opened at ${url}; fixture Ledger validation passed; protected action remains human-approval gated.`
+      : `App gate opened at ${url}; browser or API validation needs review.`;
+    const reviewerNote = defaultObservation;
+    console.log(`Observation: ${reviewerNote}`);
 
     return step("lane-02-app-gate", "Protected app action gate", ready && apiStatus === "passed" ? "passed" : "needs_review", {
       sourceDemo: "02-dmk-skills-app",
@@ -387,11 +381,8 @@ async function runWorkflowMapLane(rl) {
   ]);
 
   const confirmed = await confirm(rl, "Do the generated lane receipts preserve the combined workflow boundaries?", true);
-  const reviewerNote = await note(
-    rl,
-    "Combined workflow observation:",
-    "Generated lane receipts preserve visible approval gates and optional wallet proof boundaries."
-  );
+  const reviewerNote = "Generated lane receipts preserve visible approval gates and optional wallet proof boundaries.";
+  console.log(`Observation: ${reviewerNote}`);
 
   return step("lane-04-combined-workflow", "Comprehensive workflow map", confirmed ? "passed" : "needs_review", {
     sourceDemo: "04-comprehensive-workflow",

@@ -7,6 +7,7 @@ const validate = document.querySelector("#validate");
 const approve = document.querySelector("#approve");
 const publish = document.querySelector("#publish");
 const gateStatus = document.querySelector("#gate-status");
+const protectedAction = document.querySelector("#protected-action");
 const summary = document.querySelector("#summary");
 const receipt = document.querySelector("#receipt");
 
@@ -55,7 +56,37 @@ function renderSummary(payload) {
   summary.textContent = "Gate result recorded. See JSON receipt for details.";
 }
 
+function renderProtectedAction(payload) {
+  if (!payload) {
+    protectedAction.textContent = "Protected action: waiting for Ledger validation.";
+    return;
+  }
+
+  if (payload.validationStatus === "pending") {
+    protectedAction.textContent = "Protected action: publish remains locked while Ledger validation is pending.";
+    return;
+  }
+
+  if (payload.validationStatus === "failed") {
+    protectedAction.textContent = "Protected action: publish is blocked because Ledger validation failed.";
+    return;
+  }
+
+  if (payload.action === "publish_setting") {
+    protectedAction.textContent = `Protected action: published "${payload.setting}" after validation and human approval.`;
+    return;
+  }
+
+  if (payload.validationStatus === "passed") {
+    protectedAction.textContent = "Protected action: Ledger validation passed; human approval is required before publish unlocks.";
+    return;
+  }
+
+  protectedAction.textContent = "Protected action: state recorded in the agent-readable receipt.";
+}
+
 function renderGateResult(payload) {
+  renderProtectedAction(payload);
   renderSummary(payload);
   renderReceipt(payload);
 }
@@ -113,6 +144,7 @@ approve.addEventListener("click", () => {
   if (!ledgerValidated) return;
   hardwareApproved = true;
   gateStatus.textContent = "Status: simulated Ledger approval captured";
+  protectedAction.textContent = "Protected action: human approval captured; publish is now available.";
   publish.disabled = false;
 });
 
