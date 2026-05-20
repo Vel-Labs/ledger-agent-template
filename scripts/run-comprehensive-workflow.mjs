@@ -53,9 +53,37 @@ async function note(rl, prompt, fallback) {
 async function chooseLedgerMode(rl, label) {
   if (autoYes) return false;
   const answer = (await rl.question(
-    `${label}: unlock the Ledger, open the Ethereum app, then press Enter to submit real USB attestation. Type "demo" for fixture mode.\n> `
+    `${label}: connect and unlock the Ledger, then press Enter to request the Ethereum app and submit real USB attestation. Type "demo" for fixture mode.\n> `
   )).trim().toLowerCase();
   return answer !== "demo" && answer !== "fixture";
+}
+
+async function requestLedgerApp(rl, appName) {
+  if (autoYes) {
+    return {
+      requested: false,
+      skipped: "auto_mode"
+    };
+  }
+
+  const result = runCommand("node", ["scripts/open-ledger-app.mjs", appName], { cwd: root });
+  if (result.passed) {
+    console.log(`Ledger app request completed: ${appName}`);
+    return {
+      requested: true,
+      appName,
+      command: result
+    };
+  }
+
+  console.log(`Ledger app request did not complete automatically: ${result.stderr || result.stdout || "unknown error"}`);
+  const proceed = await confirm(rl, `Open ${appName} manually on the Ledger, then continue?`, true);
+  return {
+    requested: true,
+    appName,
+    command: result,
+    manuallyContinued: proceed
+  };
 }
 
 function step(id, title, status, payload) {
@@ -140,6 +168,15 @@ function startNodeServer(args, env = {}) {
   };
 }
 
+async function waitForServerLog(logs, pattern, attempts = 30) {
+  for (let index = 0; index < attempts; index += 1) {
+    const match = logs.join("\n").match(pattern);
+    if (match) return match;
+    await new Promise(resolveWait => setTimeout(resolveWait, 100));
+  }
+  return null;
+}
+
 function getFreePort() {
   return new Promise((resolvePort, reject) => {
     const server = createNetServer();
@@ -170,10 +207,10 @@ function mime(path) {
   }
 }
 
-function startStaticServer(rootDir, port) {
+function startStaticServer(rootDir, port, host = "localhost") {
   const staticRoot = resolve(root, rootDir);
   const server = createHttpServer(async (req, res) => {
-    const url = new URL(req.url, `http://127.0.0.1:${port}`);
+    const url = new URL(req.url, `http://${host}:${port}`);
     const requested = url.pathname === "/" ? "/index.html" : url.pathname;
     const path = normalize(join(staticRoot, requested));
 
@@ -198,9 +235,9 @@ function startStaticServer(rootDir, port) {
 
   return new Promise((resolveServer, reject) => {
     server.once("error", reject);
-    server.listen(port, "127.0.0.1", () => {
+    server.listen(port, host, () => {
       resolveServer({
-        url: `http://127.0.0.1:${port}/`,
+        url: `http://${host}:${port}/`,
         close: () => server.close()
       });
     });
@@ -217,6 +254,7 @@ async function runHeadlessLane(rl) {
   ]);
 
   const useRealLedger = await chooseLedgerMode(rl, "Headless Ledger validation");
+  const appRequest = useRealLedger ? await requestLedgerApp(rl, "Ethereum") : null;
 
   const cwd = resolve(root, "01-headless-cli");
   const propose = runCommand("node", ["src/agent-cli.mjs", "propose", "fixtures/send-draft.json"], { cwd });
@@ -247,6 +285,7 @@ async function runHeadlessLane(rl) {
     hardwareVerified: validationReceipt.hardwareVerified === true,
     signingPerformed: approvalReceipt?.signing?.performed === true,
     commands: { propose, validate, approve },
+    appRequest,
     evidence: {
       proposalReceipt: "01-headless-cli/receipts/latest-proposal.json",
       ledgerValidationReceipt: "01-headless-cli/receipts/latest-ledger-validation.json",
@@ -272,9 +311,10 @@ async function runAppGateLane(rl) {
   });
 
   try {
-    const url = `http://127.0.0.1:${port}/`;
+    const readyLog = await waitForServerLog(server.logs, /http:\/\/127\.0\.0\.1:(\d+)\//);
+    const url = readyLog?.[0] ?? `http://127.0.0.1:${port}/`;
     const ready = await waitForHttp(url);
-    const browser = openBrowser(url);
+    const appRequest = useRealLedger ? await requestLedgerApp(rl, "Ethereum") : null;
     let apiReceipt;
     let apiStatus = "failed";
     let apiError;
@@ -285,7 +325,7 @@ async function runAppGateLane(rl) {
         body: JSON.stringify({
           action: "publish_setting",
           intent: "publish_admin_setting",
-          setting: "agent_review_required"
+          setting: "Maintenance window at 19:00 UTC"
         })
       });
       apiReceipt = await response.json();
@@ -301,6 +341,10 @@ async function runAppGateLane(rl) {
       : `App gate opened at ${url}; browser or API validation needs review.`;
     const reviewerNote = defaultObservation;
     console.log(`Observation: ${reviewerNote}`);
+    const browser = openBrowser(url);
+    if (!autoYes) {
+      await rl.question("Review demo 2 in the browser. The validation result should already be populated. Press Enter to continue to demo 3.");
+    }
 
     return step("lane-02-app-gate", "Protected app action gate", ready && apiStatus === "passed" ? "passed" : "needs_review", {
       sourceDemo: "02-dmk-skills-app",
@@ -310,6 +354,7 @@ async function runAppGateLane(rl) {
       reviewerNote,
       hardwareVerified: apiReceipt?.hardwareVerified === true,
       browser,
+      appRequest,
       serverReady: ready,
       serverLogs: server.logs,
       protectedAction: fixture.protectedAction ?? "publish_setting",
@@ -334,8 +379,11 @@ async function runAuthLane(rl) {
     "The receipt records your observation; production still needs server-side WebAuthn verification."
   ]);
 
-  const server = await startStaticServer("03-hardware-auth/src", await getFreePort());
+  const server = await startStaticServer("03-hardware-auth/src", await getFreePort(), "localhost");
   try {
+    if (!autoYes) {
+      await requestLedgerApp(rl, "Security Key");
+    }
     const browser = openBrowser(server.url);
     const completed = autoYes
       ? await waitForHttp(server.url)

@@ -9,6 +9,7 @@ const require = createRequire(import.meta.url);
 const here = fileURLToPath(new URL(".", import.meta.url));
 const port = Number(process.env.PORT ?? 8022);
 const fixtureMode = process.env.LEDGER_FIXTURE === "1";
+let latestValidationReceipt = null;
 
 function now() {
   return new Date().toISOString();
@@ -189,7 +190,25 @@ const server = createServer(async (req, res) => {
   if (req.method === "POST" && req.url === "/api/ledger-validate") {
     try {
       const intent = await readBody(req);
+      if (
+        latestValidationReceipt?.validationStatus === "passed" &&
+        latestValidationReceipt.intent === intent.intent &&
+        latestValidationReceipt.actionSource?.action === intent.action &&
+        latestValidationReceipt.actionSource?.setting === intent.setting
+      ) {
+        json(res, 200, {
+          ...latestValidationReceipt,
+          replayedFromServerCache: true
+        });
+        return;
+      }
+
       const receipt = await validateWithLedger(intent);
+      receipt.actionSource = {
+        action: intent.action,
+        setting: intent.setting
+      };
+      if (receipt.validationStatus === "passed") latestValidationReceipt = receipt;
       json(res, receipt.validationStatus === "passed" ? 200 : 422, receipt);
     } catch (error) {
       json(res, 500, {
@@ -198,6 +217,14 @@ const server = createServer(async (req, res) => {
         failure: { message: error.message }
       });
     }
+    return;
+  }
+
+  if (req.method === "GET" && req.url === "/api/latest-validation") {
+    json(res, latestValidationReceipt ? 200 : 404, latestValidationReceipt ?? {
+      validationStatus: "missing",
+      hardwareVerified: false
+    });
     return;
   }
 

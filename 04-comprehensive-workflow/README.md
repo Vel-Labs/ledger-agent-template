@@ -14,7 +14,7 @@ npm run demo:comprehensive
 
 The guided workflow runs each demo lane and writes one combined receipt to `receipts/latest-comprehensive-workflow.json` plus per-lane receipts under `receipts/`.
 
-It runs the headless CLI, starts the app-gate server, opens browser surfaces, prompts before real Ledger submission points, captures reviewer observations, and records what was actually tested. Ledger lanes default to real USB attestation; type `demo` at a Ledger prompt to use fixture mode.
+It runs the headless CLI, starts the app-gate server, opens browser surfaces, prompts before real Ledger submission points, requests the Ethereum or Security Key app when possible, captures reviewer observations, and records what was actually tested. Ledger lanes default to real USB attestation; type `demo` at a Ledger prompt to use fixture mode.
 
 Use the automated smoke path only for CI:
 

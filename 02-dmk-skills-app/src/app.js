@@ -91,6 +91,23 @@ function renderGateResult(payload) {
   renderReceipt(payload);
 }
 
+async function loadLatestValidation() {
+  try {
+    const response = await fetch("/api/latest-validation");
+    if (!response.ok) return;
+    validationReceipt = await response.json();
+    if (validationReceipt.validationStatus !== "passed") return;
+    ledgerValidated = true;
+    approve.disabled = false;
+    gateStatus.textContent = validationReceipt.hardwareVerified
+      ? "Status: Ledger device attestation captured; approval still required"
+      : "Status: fixture Ledger validation passed; approval still required";
+    renderGateResult(validationReceipt);
+  } catch {
+    // No cached validation is available. The user can still run validation manually.
+  }
+}
+
 validate.addEventListener("click", async () => {
   ledgerValidated = false;
   hardwareApproved = false;
@@ -139,6 +156,8 @@ validate.addEventListener("click", async () => {
     });
   }
 });
+
+loadLatestValidation();
 
 approve.addEventListener("click", () => {
   if (!ledgerValidated) return;
