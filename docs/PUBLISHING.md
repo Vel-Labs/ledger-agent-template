@@ -50,7 +50,7 @@ Avoid claiming:
 - wallet ownership as primary identity
 - demo 4 as end-to-end tested until that has receipts
 
-The template intentionally does not install Ledger USB packages by default. Fixture paths should work immediately, while real hardware attestation remains an explicit advanced setup step.
+The template intentionally installs the Ledger USB packages because hardware attestation is a first-class lane. Fixture paths still remain the default safe path, and physical Ledger proof must be claimed only when a real device receipt exists.
 
 ## Pre-Push Checks
 
@@ -59,10 +59,10 @@ Run:
 ```bash
 npm run check
 npm run check:headless
-npm run demo:comprehensive
+npm run demo:comprehensive:auto
 ```
 
 `npm run check` verifies the scaffold contract. `npm run check:headless` exercises the headless CLI receipt path.
-`npm run demo:comprehensive` generates a tandem fixture receipt across all four demo lanes.
+`npm run demo:comprehensive:auto` generates a tandem fixture receipt across all four demo lanes for CI. For public demo prep, run `npm run demo:comprehensive` and complete the guided prompts.
 
 Demo 4 is currently a scaffolded workflow map. Do not describe it as fully tested until a real app surface has generated receipts for its identity, approval, optional wallet proof, and feedback lanes.

@@ -7,11 +7,13 @@
   "ledgerLayer": "security_key_identity_and_fresh_secret_gate",
   "sessionOpenedByAgent": false,
   "validationMode": "demo_fallback",
+  "reviewerAcknowledged": true,
+  "reviewerNote": "Auth checked in guided TTY",
   "hardwareVerified": false,
   "secretReleased": false,
   "evidence": {
     "fixture": "03-hardware-auth/fixtures/auth-policy.json",
     "browserSurface": "03-hardware-auth/src/index.html"
   },
-  "createdAt": "2026-05-20T13:51:20.030Z"
+  "createdAt": "2026-05-20T14:10:51.798Z"
 }

@@ -6,6 +6,8 @@
   "intent": "send_draft",
   "ledgerLayer": "proposal_to_ledger_signing_gate",
   "validationMode": "fixture_ledger_validation",
+  "reviewerAcknowledged": true,
+  "reviewerNote": "Proposal checked in guided TTY",
   "hardwareVerified": false,
   "signing": {
     "performed": false,
@@ -15,5 +17,5 @@
     "fixture": "01-headless-cli/fixtures/send-draft.json",
     "comparableReceipt": "01-headless-cli/receipts/latest-proposal.json"
   },
-  "createdAt": "2026-05-20T13:51:20.030Z"
+  "createdAt": "2026-05-20T14:10:35.821Z"
 }

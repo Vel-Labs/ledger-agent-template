@@ -6,6 +6,8 @@
   "intent": "combined_identity_approval_wallet_feedback",
   "ledgerLayer": "workflow_ledger_validation_map",
   "validationMode": "workflow_ledger_validation_map",
+  "reviewerAcknowledged": true,
+  "reviewerNote": "Workflow checked in guided TTY",
   "hardwareVerified": false,
   "workflowLayers": [
     "security_key_identity",
@@ -24,5 +26,5 @@
     "fixture": "04-comprehensive-workflow/fixtures/feature-map.json",
     "boundary": "04-comprehensive-workflow/BOUNDARY.md"
   },
-  "createdAt": "2026-05-20T13:51:20.030Z"
+  "createdAt": "2026-05-20T14:11:00.080Z"
 }

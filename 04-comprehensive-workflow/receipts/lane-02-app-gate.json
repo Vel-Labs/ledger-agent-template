@@ -6,6 +6,8 @@
   "intent": "publish_admin_setting",
   "ledgerLayer": "app_action_to_ledger_hardware_gate",
   "validationMode": "fixture_ledger_validation",
+  "reviewerAcknowledged": true,
+  "reviewerNote": "App gate checked in guided TTY",
   "hardwareVerified": false,
   "protectedAction": {
     "label": "Publish setting",
@@ -16,5 +18,5 @@
     "fixture": "02-dmk-skills-app/fixtures/install-plan.json",
     "runnableSurface": "npm run demo:dmk:fixture"
   },
-  "createdAt": "2026-05-20T13:51:20.030Z"
+  "createdAt": "2026-05-20T14:10:43.197Z"
 }

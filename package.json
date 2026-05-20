@@ -27,6 +27,7 @@
     "check": "node scripts/validate-scaffold.mjs",
     "check:headless": "cd 01-headless-cli && node src/agent-cli.mjs propose fixtures/send-draft.json && node src/agent-cli.mjs ledger-validate receipts/latest-proposal.json --fixture && node src/agent-cli.mjs approve receipts/latest-proposal.json --human \"scaffold check\"",
     "demo:comprehensive": "node scripts/run-comprehensive-workflow.mjs",
+    "demo:comprehensive:auto": "node scripts/run-comprehensive-workflow.mjs --yes",
     "demo:dmk": "node 02-dmk-skills-app/src/server.mjs",
     "demo:dmk:fixture": "LEDGER_FIXTURE=1 node 02-dmk-skills-app/src/server.mjs"
   },
@@ -38,5 +39,9 @@
     "webauthn",
     "hardware-wallet"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@ledgerhq/hw-app-eth": "^7.8.2",
+    "@ledgerhq/hw-transport-node-hid": "^6.33.2"
+  }
 }

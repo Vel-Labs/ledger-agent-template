@@ -3,7 +3,7 @@
   "title": "Dogfood feedback receipt",
   "status": "passed",
   "sourceDemo": "04-comprehensive-workflow",
-  "flow": "comprehensive_workflow_fixture_run",
+  "flow": "comprehensive_workflow_guided_fixture_run",
   "ledgerLayers": [
     "security_key_identity",
     "fresh_ledger_approval",
@@ -13,9 +13,9 @@
   ],
   "expectedDevicePrompt": "Each sensitive lane names the Ledger or Security Key prompt that a real implementation must show.",
   "observedDevicePrompt": "Fixture run only; no physical prompt observed.",
-  "appBelievedState": "All scaffold lanes passed their fixture contract and remain blocked from hidden signing or secret release.",
-  "userObservedState": "Combined receipt generated from local fixtures.",
-  "remainingQuestion": "Replace one fixture lane with a real app or hardware receipt before claiming end-to-end dogfood proof.",
+  "appBelievedState": "Scaffold lanes were reviewed against their fixture contract and remain blocked from hidden signing or secret release.",
+  "userObservedState": "Guided reviewer walkthrough completed.",
+  "remainingQuestion": "Replace lane 2 with browser receipt",
   "hardwareVerified": false,
-  "createdAt": "2026-05-20T13:51:20.030Z"
+  "createdAt": "2026-05-20T14:11:03.928Z"
 }

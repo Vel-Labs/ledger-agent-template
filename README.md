@@ -84,20 +84,17 @@ Split a demo into its own repo only after it has an independent runtime, release
 npm run check
 npm run check:headless
 npm run demo:comprehensive
+npm run demo:comprehensive:auto
 npm run demo:dmk:fixture
 ```
 
-`npm run check` verifies the scaffold contract. `npm run check:headless` exercises the headless receipt path. `npm run demo:comprehensive` writes a combined receipt under `04-comprehensive-workflow/receipts/`.
+`npm run check` verifies the scaffold contract. `npm run check:headless` exercises the headless receipt path. `npm run demo:comprehensive` guides a reviewer through every lane before writing a combined receipt under `04-comprehensive-workflow/receipts/`. `npm run demo:comprehensive:auto` is only for CI or smoke checks where a guided reviewer is not present.
 
-## Optional Hardware Packages
+## Ledger Packages
 
-The first-run template is dependency-light and fixture-backed. If you intentionally want to test the USB Ledger attestation path, install the hardware packages in your generated project:
+This template installs the Ledger hardware packages needed by the USB attestation lanes. Fixture mode remains the default safe path, but the real Ledger path should be available without making builders discover packages by hand.
 
-```bash
-npm install @ledgerhq/hw-app-eth @ledgerhq/hw-transport-node-hid
-```
-
-Then run the non-fixture Ledger validation path from the relevant demo with a connected, unlocked Ledger and the Ethereum app open.
+To run real Ledger attestation, use a connected, unlocked Ledger with the Ethereum app open, then run the non-fixture validation path from the relevant demo.
 
 ## Boundaries
 
