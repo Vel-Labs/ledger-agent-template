@@ -17,8 +17,8 @@
   },
   "evidence": {
     "fixture": "03-hardware-auth/fixtures/auth-policy.json",
-    "browserUrl": "http://localhost:49552/?guided=session",
+    "browserUrl": "http://localhost:50375/?guided=session",
     "serverVerification": false
   },
-  "createdAt": "2026-05-20T15:22:58.107Z"
+  "createdAt": "2026-05-20T16:23:38.612Z"
 }

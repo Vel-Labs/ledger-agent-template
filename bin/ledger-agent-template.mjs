@@ -27,7 +27,7 @@ const copyRoots = [
   "01-headless-cli",
   "02-dmk-skills-app",
   "03-hardware-auth",
-  "04-comprehensive-workflow",
+  "04-guided-journey",
   "contracts",
   "docs",
   "scripts",
@@ -103,7 +103,7 @@ try {
   console.log(`  cd ${targetArg}`);
   console.log("  npm install");
   console.log("  npm run check");
-  console.log("  npm run demo:comprehensive");
+  console.log("  npm run demo:journey");
   console.log("");
   console.log("For agent work, start with AGENT_START_HERE.md.");
 } catch (error) {

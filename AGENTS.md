@@ -63,7 +63,7 @@ Before an agent changes a demo, it should be able to state:
 - `01-headless-cli`: `skills/ledger-headless-attestation/SKILL.md`
 - `02-dmk-skills-app`: `skills/ledger-app-gate/SKILL.md`
 - `03-hardware-auth`: `skills/ledger-auth-sensitive-access/SKILL.md`
-- `04-comprehensive-workflow`: `skills/comprehensive-ledger-workflow/SKILL.md`
+- `04-guided-journey`: `skills/guided-ledger-journey/SKILL.md`
 
 ## Definition Of Done
 

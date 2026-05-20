@@ -1,10 +1,10 @@
 {
-  "id": "lane-04-combined-workflow",
-  "title": "Comprehensive workflow map",
+  "id": "lane-04-journey-map",
+  "title": "Guided journey map",
   "status": "passed",
-  "sourceDemo": "04-comprehensive-workflow",
+  "sourceDemo": "04-guided-journey",
   "intent": "combined_identity_approval_wallet_feedback",
-  "ledgerLayer": "workflow_ledger_validation_map",
+  "ledgerLayer": "guided_journey_ledger_validation_map",
   "validationMode": "workflow_ledger_validation_map",
   "reviewerNote": "Generated lane receipts preserve visible approval gates and optional wallet proof boundaries.",
   "hardwareVerified": false,
@@ -22,8 +22,8 @@
     "feedback_records_device_prompt_and_app_state"
   ],
   "evidence": {
-    "fixture": "04-comprehensive-workflow/fixtures/feature-map.json",
-    "boundary": "04-comprehensive-workflow/BOUNDARY.md"
+    "fixture": "04-guided-journey/fixtures/feature-map.json",
+    "boundary": "04-guided-journey/BOUNDARY.md"
   },
-  "createdAt": "2026-05-20T15:22:58.107Z"
+  "createdAt": "2026-05-20T16:23:38.612Z"
 }

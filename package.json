@@ -11,7 +11,7 @@
     "01-headless-cli",
     "02-dmk-skills-app",
     "03-hardware-auth",
-    "04-comprehensive-workflow",
+    "04-guided-journey",
     "contracts",
     "docs",
     "scripts",
@@ -26,8 +26,10 @@
   "scripts": {
     "check": "node scripts/validate-scaffold.mjs",
     "check:headless": "cd 01-headless-cli && node src/agent-cli.mjs propose fixtures/send-draft.json && node src/agent-cli.mjs ledger-validate receipts/latest-proposal.json --fixture && node src/agent-cli.mjs approve receipts/latest-proposal.json --human \"scaffold check\"",
-    "demo:comprehensive": "node scripts/run-comprehensive-workflow.mjs",
-    "demo:comprehensive:auto": "node scripts/run-comprehensive-workflow.mjs --yes",
+    "demo:journey": "node scripts/run-guided-journey.mjs",
+    "demo:journey:auto": "node scripts/run-guided-journey.mjs --yes",
+    "demo:comprehensive": "npm run demo:journey",
+    "demo:comprehensive:auto": "npm run demo:journey:auto",
     "demo:dmk": "node 02-dmk-skills-app/src/server.mjs",
     "demo:dmk:fixture": "LEDGER_FIXTURE=1 node 02-dmk-skills-app/src/server.mjs"
   },

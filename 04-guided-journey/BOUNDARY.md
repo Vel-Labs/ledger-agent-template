@@ -2,12 +2,12 @@
 
 ## Proves
 
-- A neutral multi-function app can serve as the comprehensive Ledger agent demo.
+- A neutral multi-function journey can show what a Ledger Signer can gate for an agent-assisted app.
 - The three pillars can fit into one recognizable workflow.
 - Ledger validation can be mapped to every sensitive app intent by default.
 - The workflow can show identity proof, fresh approval, optional wallet proof, local/off-chain state, and feedback capture together.
 - Ledger layering can stay visible without making wallet ownership the primary identity story.
-- The simple demos remain the teaching path before the comprehensive app.
+- The simple demos remain the teaching path before the guided journey app.
 
 ## Does Not Prove
 
@@ -20,7 +20,7 @@
 
 - This folder is an implementation-neutral scaffold.
 - A real product app can adopt this ladder one intent lane at a time.
-- The feature map names the Ledger layers that belong in the comprehensive workflow.
+- The feature map names the Ledger layers that belong in the guided journey.
 
 ## Mocked Or Dry-Run
 

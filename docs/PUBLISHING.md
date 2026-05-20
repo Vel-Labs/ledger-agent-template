@@ -9,7 +9,7 @@ The demos are intentionally a ladder:
 - `01-headless-cli`: proposal and approval receipts
 - `02-dmk-skills-app`: app action gate
 - `03-hardware-auth`: authentication and sensitive access gate
-- `04-comprehensive-workflow`: neutral multi-function workflow map
+- `04-guided-journey`: neutral multi-function guided journey
 
 Keeping them together gives builders one shared evidence contract, one safety boundary model, one validation command, and one path from beginner to advanced work.
 
@@ -59,10 +59,10 @@ Run:
 ```bash
 npm run check
 npm run check:headless
-npm run demo:comprehensive:auto
+npm run demo:journey:auto
 ```
 
 `npm run check` verifies the scaffold contract. `npm run check:headless` exercises the headless CLI receipt path.
-`npm run demo:comprehensive:auto` runs the non-interactive smoke path for CI. For public demo prep, run `npm run demo:comprehensive`; it invokes each lane, opens browser surfaces, requests the relevant Ledger app when possible, assumes real Ledger validation unless the reviewer types `demo`, and captures reviewer observations in the combined receipt.
+`npm run demo:journey:auto` runs the non-interactive smoke path for CI. For public demo prep, run `npm run demo:journey`; it invokes each lane, opens browser surfaces, requests the relevant Ledger app when possible, assumes real Ledger validation unless the reviewer types `demo`, and captures reviewer observations in the combined receipt.
 
-Demo 4 is currently a scaffolded workflow map. Do not describe it as fully tested until a real app surface has generated receipts for its identity, approval, optional wallet proof, and feedback lanes.
+Demo 4 is currently a guided journey scaffold. Do not describe it as fully tested until a real app surface has generated receipts for its identity, approval, optional wallet proof, and feedback lanes.

@@ -27,7 +27,7 @@ Use the repo-local skills as operating instructions, not background reading:
 | `01-headless-cli` | `skills/ledger-headless-attestation/SKILL.md` |
 | `02-dmk-skills-app` | `skills/ledger-app-gate/SKILL.md` |
 | `03-hardware-auth` | `skills/ledger-auth-sensitive-access/SKILL.md` |
-| `04-comprehensive-workflow` | `skills/comprehensive-ledger-workflow/SKILL.md` |
+| `04-guided-journey` | `skills/guided-ledger-journey/SKILL.md` |
 
 When changing a demo, load the matching skill first and preserve its boundary language.
 

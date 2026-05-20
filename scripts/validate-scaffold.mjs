@@ -5,7 +5,7 @@ const demos = [
   "01-headless-cli",
   "02-dmk-skills-app",
   "03-hardware-auth",
-  "04-comprehensive-workflow"
+  "04-guided-journey"
 ];
 
 const requiredRootFiles = [
@@ -28,7 +28,7 @@ const requiredSkills = [
   "skills/ledger-headless-attestation/SKILL.md",
   "skills/ledger-app-gate/SKILL.md",
   "skills/ledger-auth-sensitive-access/SKILL.md",
-  "skills/comprehensive-ledger-workflow/SKILL.md"
+  "skills/guided-ledger-journey/SKILL.md"
 ];
 
 const boundaryPhrases = [

@@ -1,11 +1,11 @@
 ---
-name: comprehensive-ledger-workflow
-description: Use when changing the comprehensive workflow scaffold that ties all Ledger agent pillars together.
+name: guided-ledger-journey
+description: Use when changing the guided journey scaffold that ties all Ledger agent pillars together.
 ---
 
-# Comprehensive Ledger Workflow
+# Guided Ledger Journey
 
-Use this skill for `04-comprehensive-workflow`.
+Use this skill for `04-guided-journey`.
 
 ## Required Boundary
 
@@ -18,7 +18,7 @@ Use this skill for `04-comprehensive-workflow`.
 
 ## Intent Lanes
 
-Useful comprehensive-demo lanes:
+Useful guided-journey lanes:
 
 - `proveSessionIdentity`
 - `approveSensitiveAction`

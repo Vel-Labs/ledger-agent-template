@@ -1,10 +1,10 @@
 # AGENTS
 
-Use this file when working inside `04-comprehensive-workflow`.
+Use this file when working inside `04-guided-journey`.
 
 ## Agent Can Do
 
-- Shape the neutral comprehensive workflow demo plan.
+- Shape the neutral guided journey demo plan.
 - Map app intents to Ledger validation, fresh approval, optional wallet proof, local/off-chain state, and dogfood feedback.
 - Keep this folder product-neutral so it can be adapted into many app domains.
 
@@ -16,4 +16,4 @@ Use this file when working inside `04-comprehensive-workflow`.
 
 ## Local Skill
 
-Read `../skills/comprehensive-ledger-workflow/SKILL.md` before changing this demo.
+Read `../skills/guided-ledger-journey/SKILL.md` before changing this demo.

@@ -1,6 +1,6 @@
 {
-  "id": "comprehensive-workflow-1779290578108",
-  "createdAt": "2026-05-20T15:22:58.108Z",
+  "id": "guided-journey-1779294218613",
+  "createdAt": "2026-05-20T16:23:38.613Z",
   "status": "passed",
   "mode": "auto_function_tandem_workflow",
   "hardwareVerified": false,
@@ -11,7 +11,7 @@
     "01-headless-cli",
     "02-dmk-skills-app",
     "03-hardware-auth",
-    "04-comprehensive-workflow"
+    "04-guided-journey"
   ],
   "receipts": [
     {
@@ -20,7 +20,7 @@
       "sourceDemo": "01-headless-cli",
       "status": "passed",
       "hardwareVerified": false,
-      "path": "04-comprehensive-workflow/receipts/lane-01-proposal.json"
+      "path": "04-guided-journey/receipts/lane-01-proposal.json"
     },
     {
       "id": "lane-02-app-gate",
@@ -28,7 +28,7 @@
       "sourceDemo": "02-dmk-skills-app",
       "status": "passed",
       "hardwareVerified": false,
-      "path": "04-comprehensive-workflow/receipts/lane-02-app-gate.json"
+      "path": "04-guided-journey/receipts/lane-02-app-gate.json"
     },
     {
       "id": "lane-03-auth-sensitive-access",
@@ -36,23 +36,23 @@
       "sourceDemo": "03-hardware-auth",
       "status": "passed",
       "hardwareVerified": false,
-      "path": "04-comprehensive-workflow/receipts/lane-03-auth-sensitive-access.json"
+      "path": "04-guided-journey/receipts/lane-03-auth-sensitive-access.json"
     },
     {
-      "id": "lane-04-combined-workflow",
-      "title": "Comprehensive workflow map",
-      "sourceDemo": "04-comprehensive-workflow",
+      "id": "lane-04-journey-map",
+      "title": "Guided journey map",
+      "sourceDemo": "04-guided-journey",
       "status": "passed",
       "hardwareVerified": false,
-      "path": "04-comprehensive-workflow/receipts/lane-04-combined-workflow.json"
+      "path": "04-guided-journey/receipts/lane-04-journey-map.json"
     },
     {
       "id": "lane-05-feedback",
       "title": "Dogfood feedback receipt",
-      "sourceDemo": "04-comprehensive-workflow",
+      "sourceDemo": "04-guided-journey",
       "status": "passed",
       "hardwareVerified": false,
-      "path": "04-comprehensive-workflow/receipts/lane-05-feedback.json"
+      "path": "04-guided-journey/receipts/lane-05-feedback.json"
     }
   ],
   "nonClaims": [

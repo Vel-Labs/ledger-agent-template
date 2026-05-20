@@ -13,7 +13,7 @@ npx ledger-agent-template my-ledger-agent-workflows
 cd my-ledger-agent-workflows
 npm install
 npm run check
-npm run demo:comprehensive
+npm run demo:journey
 ```
 
 For agent-assisted implementation, give the agent this first:
@@ -29,9 +29,11 @@ Read AGENT_START_HERE.md, then use the matching repo-local skill before changing
 | `01-headless-cli` | Agent proposes an operation, human reviews it, signing stays blocked | `npm run check:headless` |
 | `02-dmk-skills-app` | App action waits for Ledger-shaped validation before publish | `npm run demo:dmk:fixture` |
 | `03-hardware-auth` | Security Key/WebAuthn session plus fresh sensitive-access gate | Open the local browser scaffold |
-| `04-comprehensive-workflow` | Guided run across the headless, app-gate, auth, and workflow-map lanes | `npm run demo:comprehensive` |
+| `04-guided-journey` | Guided run across the headless, app-gate, auth, and journey-map lanes | `npm run demo:journey` |
 
-The comprehensive workflow invokes the demo functions lane by lane. It runs the headless CLI, starts the app-gate server, opens browser surfaces, captures reviewer observations, and writes one combined receipt. Fixture runs still do not prove physical Ledger verification, server-verified WebAuthn, production custody, signing, broadcast, wallet movement, or secret release.
+Start with `npm run demo:journey` when you want to see what a Ledger Signer can do across the scaffold. It walks through the lanes in order, runs the same commands the individual demos use, opens the browser surfaces where useful, captures reviewer observations, and writes one combined receipt.
+
+Use the individual demos when you want to learn or extend one pillar at a time. Fixture runs still do not prove physical Ledger verification, server-verified WebAuthn, production custody, signing, broadcast, wallet movement, or secret release.
 
 ## Human Index
 
@@ -53,7 +55,7 @@ The comprehensive workflow invokes the demo functions lane by lane. It runs the 
 | Change `01-headless-cli` | `01-headless-cli/AGENTS.md` and `skills/ledger-headless-attestation/SKILL.md` |
 | Change `02-dmk-skills-app` | `02-dmk-skills-app/AGENTS.md` and `skills/ledger-app-gate/SKILL.md` |
 | Change `03-hardware-auth` | `03-hardware-auth/AGENTS.md` and `skills/ledger-auth-sensitive-access/SKILL.md` |
-| Change `04-comprehensive-workflow` | `04-comprehensive-workflow/AGENTS.md` and `skills/comprehensive-ledger-workflow/SKILL.md` |
+| Change `04-guided-journey` | `04-guided-journey/AGENTS.md` and `skills/guided-ledger-journey/SKILL.md` |
 | Add evidence | `contracts/EVIDENCE_CONTRACT.md` |
 | Change repo structure | `AGENTS.md`, `docs/BUILDER_LADDER.md`, and `docs/PUBLISHING.md` |
 
@@ -83,12 +85,14 @@ Split a demo into its own repo only after it has an independent runtime, release
 ```bash
 npm run check
 npm run check:headless
-npm run demo:comprehensive
-npm run demo:comprehensive:auto
+npm run demo:journey
+npm run demo:journey:auto
 npm run demo:dmk:fixture
 ```
 
-`npm run check` verifies the scaffold contract. `npm run check:headless` exercises the headless receipt path. `npm run demo:comprehensive` runs and guides each lane before writing a combined receipt under `04-comprehensive-workflow/receipts/`. It assumes real Ledger validation for Ledger lanes after prompting you to connect and unlock the device; the harness then requests the Ethereum or Security Key app when possible. Type `demo` at a Ledger prompt to use fixture mode. `npm run demo:comprehensive:auto` is only for CI or smoke checks where a guided reviewer is not present.
+`npm run check` verifies the scaffold contract. `npm run check:headless` exercises the headless receipt path. `npm run demo:journey` runs and guides each lane before writing a combined receipt under `04-guided-journey/receipts/`. It assumes real Ledger validation for Ledger lanes after prompting you to connect and unlock the device; the harness then requests the Ethereum or Security Key app when possible. Type `demo` at a Ledger prompt to use fixture mode. `npm run demo:journey:auto` is only for CI or smoke checks where a guided reviewer is not present.
+
+`npm run demo:comprehensive` remains as a backwards-compatible alias, but new docs and generated scaffolds should point people to `npm run demo:journey`.
 
 When moving from Ethereum signing lanes into the Security Key lane, exit the current Ledger app back to the dashboard before continuing. The harness requests the Security Key app, but that request can fail if Ethereum is still foregrounded.
 

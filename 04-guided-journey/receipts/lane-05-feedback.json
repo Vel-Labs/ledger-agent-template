@@ -2,8 +2,8 @@
   "id": "lane-05-feedback",
   "title": "Dogfood feedback receipt",
   "status": "passed",
-  "sourceDemo": "04-comprehensive-workflow",
-  "flow": "comprehensive_workflow_auto_function_run",
+  "sourceDemo": "04-guided-journey",
+  "flow": "guided_journey_auto_function_run",
   "ledgerLayers": [
     "security_key_identity",
     "fresh_ledger_approval",
@@ -17,5 +17,5 @@
   "userObservedState": "Auto function run completed.",
   "remainingQuestion": "Replace one fixture or browser-observed lane with a persisted real hardware receipt.",
   "hardwareVerified": false,
-  "createdAt": "2026-05-20T15:22:58.107Z"
+  "createdAt": "2026-05-20T16:23:38.612Z"
 }

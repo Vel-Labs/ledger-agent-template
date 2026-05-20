@@ -1,6 +1,6 @@
 {
-  "id": "proposal-1779290614466",
-  "createdAt": "2026-05-20T15:23:34.466Z",
+  "id": "proposal-1779294227016",
+  "createdAt": "2026-05-20T16:23:47.016Z",
   "sourceFixture": "send-draft.json",
   "action": "send_draft",
   "ledgerLayer": "proposal_to_ledger_signing_gate",

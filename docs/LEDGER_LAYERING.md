@@ -39,7 +39,7 @@ The point is not that every demo performs every Ledger operation. The point is t
 | `01-headless-cli` | Proposal -> USB Ledger message attestation -> human approval -> transaction signing gate | Real Ledger attestation and dry-run proposal by default; fixture fallback only with `--fixture` | Intent policy plus real Ledger transaction confirmation behind an explicit live mode |
 | `02-dmk-skills-app` | App action -> Ledger validation -> simulated approval -> receipt | Fixture validation before approval | Official Ledger toolkit/skill adapter plus action policy |
 | `03-hardware-auth` | Security Key/FIDO2 session -> Ledger validation -> fresh sensitive-action gate | WebAuthn attempt plus fixture validation | Server-verified WebAuthn and optional OpenPGP smart-card decrypt |
-| `04-comprehensive-workflow` | Identity -> approval -> optional wallet proof -> feedback, each mapped to Ledger validation | Workflow validation map | Real workflow receipts across all Ledger-gated intents |
+| `04-guided-journey` | Identity -> approval -> optional wallet proof -> feedback, each mapped to Ledger validation | Workflow validation map | Real workflow receipts across all Ledger-gated intents |
 
 ## Non-Claims
 

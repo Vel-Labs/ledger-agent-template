@@ -2,11 +2,11 @@
 
 ## Entry Level
 
-Use this folder as the comprehensive story map after running the three pillar demos.
+Use this folder as the guided journey after running the three pillar demos.
 
 Learn:
 
-- the comprehensive workflow is not the first teaching surface
+- the guided journey is not the first teaching surface
 - Security Key identity comes first
 - Ledger validation maps each sensitive app intent to a gate
 - fresh approval gates sensitive actions

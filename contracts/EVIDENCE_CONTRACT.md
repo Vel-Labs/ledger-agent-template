@@ -41,7 +41,7 @@ Required fields:
 
 ### Approval Receipt
 
-Used by headless, app, hardware auth, and comprehensive workflows.
+Used by headless, app, hardware auth, and guided journeys.
 
 Required fields:
 
@@ -68,7 +68,7 @@ Required fields:
 
 ### Dogfood Feedback Receipt
 
-Used by `04-comprehensive-workflow`.
+Used by `04-guided-journey`.
 
 Required fields:
 

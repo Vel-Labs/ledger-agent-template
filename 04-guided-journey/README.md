@@ -1,18 +1,18 @@
-# 04 Comprehensive Workflow Demo
+# 04 Guided Journey Demo
 
 Purpose: define a neutral multi-function demo that brings the Ledger agent story together across identity, sensitive action approval, optional wallet proof, local/off-chain state, and dogfood feedback.
 
-This folder is a scaffold, not a finished product app. It explains the contract: which Ledger-gated intents a comprehensive app should show, what evidence should be captured, and what must stay optional or local-only.
+This folder is a scaffold, not a finished product app. It explains the contract: which Ledger-gated intents a guided journey app should show, what evidence should be captured, and what must stay optional or local-only.
 
 For entry, intermediate, and advanced extension ideas, see `BUILDER_PATHS.md`.
 
-## Run The Guided Workflow
+## Run The Guided Journey
 
 ```bash
-npm run demo:comprehensive
+npm run demo:journey
 ```
 
-The guided workflow runs each demo lane and writes one combined receipt to `receipts/latest-comprehensive-workflow.json` plus per-lane receipts under `receipts/`.
+The guided journey runs each demo lane and writes one combined receipt to `receipts/latest-guided-journey.json` plus per-lane receipts under `receipts/`.
 
 It runs the headless CLI, starts the app-gate server, opens browser surfaces, prompts before real Ledger submission points, requests the Ethereum or Security Key app when possible, captures reviewer observations, and records what was actually tested. Ledger lanes default to real USB attestation; type `demo` at a Ledger prompt to use fixture mode.
 
@@ -21,14 +21,14 @@ Before the Security Key lane, exit the Ethereum app back to the Ledger dashboard
 Use the automated smoke path only for CI:
 
 ```bash
-npm run demo:comprehensive:auto
+npm run demo:journey:auto
 ```
 
-Fixture runs prove the demos can be composed into one visible workflow map, but they do not prove physical Ledger verification, server-verified WebAuthn, production custody, signing, broadcast, or secret release.
+Fixture runs prove the demos can be composed into one visible guided journey, but they do not prove physical Ledger verification, server-verified WebAuthn, production custody, signing, broadcast, or secret release.
 
 ## Ledger Layer By Default
 
-The comprehensive workflow should show Ledger layers together:
+The guided journey should show Ledger layers together:
 
 1. Security Key/WebAuthn identity proof
 2. Ledger validation for each sensitive app intent
@@ -37,9 +37,9 @@ The comprehensive workflow should show Ledger layers together:
 5. local/off-chain state by default
 6. dogfood feedback that captures device prompt, app state, and unresolved questions
 
-## Workflow Story
+## Journey Story
 
-The comprehensive demo combines the simpler pillars into one app-shaped flow:
+The guided journey combines the simpler pillars into one app-shaped flow:
 
 - Security Key identity proof opens the session.
 - Ledger validation maps each sensitive intent to the right gate.
@@ -78,4 +78,4 @@ The comprehensive demo combines the simpler pillars into one app-shaped flow:
 
 Keep wallet linking optional and additive. The first identity story should remain human-verified Security Key/WebAuthn, with wallet proof introduced only for wallet-specific actions.
 
-The comprehensive workflow should teach how the pillars fit together. The smaller demos remain the place where people learn the individual pillars.
+The guided journey should teach how the pillars fit together. The smaller demos remain the place where people learn the individual pillars.

@@ -1,11 +1,11 @@
 {
-  "id": "approval-1779290614568",
-  "approvedAt": "2026-05-20T15:23:34.568Z",
-  "proposalId": "proposal-1779290614466",
+  "id": "approval-1779294227116",
+  "approvedAt": "2026-05-20T16:23:47.116Z",
+  "proposalId": "proposal-1779294227016",
   "approvedBy": "scaffold check",
   "approvedAction": "send_draft",
   "ledgerLayer": "proposal_to_ledger_signing_gate",
-  "ledgerValidationId": "ledger-validation-1779290614518",
+  "ledgerValidationId": "ledger-validation-1779294227068",
   "dryRun": true,
   "hardwareVerified": false,
   "signing": {
