@@ -30,6 +30,18 @@ Use this framing:
 
 > Open-source Ledger agent workflow scaffolds for builders. Each demo keeps agent proposals, human approval, hardware gates, and evidence receipts visible by default.
 
+Suggested npm package name:
+
+```text
+ledger-agent-template
+```
+
+Suggested one-line start:
+
+```bash
+npx ledger-agent-template my-ledger-agent-workflows
+```
+
 Avoid claiming:
 
 - production custody readiness
@@ -37,6 +49,8 @@ Avoid claiming:
 - physical hardware verification for fixture-backed paths
 - wallet ownership as primary identity
 - demo 4 as end-to-end tested until that has receipts
+
+The template intentionally does not install Ledger USB packages by default. Fixture paths should work immediately, while real hardware attestation remains an explicit advanced setup step.
 
 ## Pre-Push Checks
 

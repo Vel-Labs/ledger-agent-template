@@ -1,58 +1,108 @@
-# Agent Demos
+# Ledger Agent Template
 
-Lightweight Ledger agent demo scaffolds for team idea starters.
+Open scaffolds for building agent-assisted Ledger workflows where proposals, approvals, hardware gates, and receipts stay visible.
 
-These demos are a ladder, not separate product pitches:
+The goal is simple: help builders start with safe local fixtures, then replace one lane at a time with real Ledger, WebAuthn, wallet, policy, app, or review infrastructure.
 
-1. `01-headless-cli` proves an agent can propose crypto operations without hidden signing.
-2. `02-dmk-skills-app` proves a developer can add an explicit Ledger hardware gate to an app action.
-3. `03-hardware-auth` proves Ledger can gate non-crypto authentication and secret access.
-4. `04-comprehensive-workflow` ties the pillars together in a neutral multi-function workflow scaffold.
+Nothing in this template signs, sends, swaps, decrypts, authenticates, or releases secrets on behalf of a user without an explicit human or device gate.
 
-Every demo runs through a Ledger validation layer by default. The first run may be mocked or dry-run, but the flow itself still validates the intended Ledger gate before approval, secret access, or workflow handoff can continue. See `docs/LEDGER_LAYERING.md`.
+## One-Line Start
 
-Each demo uses the same contract:
+```bash
+npx ledger-agent-template my-ledger-agent-workflows
+cd my-ledger-agent-workflows
+npm install
+npm run check
+npm run demo:comprehensive
+```
 
-- `README.md`: context, setup, and Web2/Web3 implementation ideas.
-- `DEMO_SCRIPT.md`: short presenter flow.
-- `BOUNDARY.md`: what is real, mocked, gated, and out of scope.
-- `BUILDER_PATHS.md`: entry, intermediate, and advanced extension paths.
-- `fixtures/`: safe demo inputs, including the default Ledger validation fixture.
-- `receipts/`: visible output evidence from a local run.
-- `AGENTS.md`: local instructions for agents working inside that demo.
+For agent-assisted implementation, give the agent this first:
 
-The default posture is dry-run, fixture-backed, and human-approved. Nothing here signs, sends, swaps, decrypts, or authenticates on behalf of a user without an explicit human/device gate.
+```text
+Read AGENT_START_HERE.md, then use the matching repo-local skill before changing any demo.
+```
+
+## What You Get
+
+| Folder | What it teaches | First safe run |
+|---|---|---|
+| `01-headless-cli` | Agent proposes an operation, human reviews it, signing stays blocked | `npm run check:headless` |
+| `02-dmk-skills-app` | App action waits for Ledger-shaped validation before publish | `npm run demo:dmk:fixture` |
+| `03-hardware-auth` | Security Key/WebAuthn session plus fresh sensitive-access gate | Open the local browser scaffold |
+| `04-comprehensive-workflow` | All lanes composed into one neutral workflow receipt | `npm run demo:comprehensive` |
+
+The comprehensive workflow is a fixture-level tandem run. It proves the scaffold contracts compose; it does not prove physical Ledger verification, server-verified WebAuthn, production custody, signing, broadcast, wallet movement, or secret release.
+
+## Human Index
+
+| Need | Start here |
+|---|---|
+| Understand the project | `README.md` |
+| Install the template | `npx ledger-agent-template <target-dir>` |
+| Pick the right demo | `docs/BUILDER_LADDER.md` |
+| Understand safety boundaries | `docs/LEDGER_LAYERING.md` |
+| See what evidence should look like | `contracts/EVIDENCE_CONTRACT.md` |
+| Publish or fork the repo | `docs/PUBLISHING.md` |
+| Extend a specific demo | That demo's `README.md`, `BOUNDARY.md`, and `BUILDER_PATHS.md` |
+
+## Agent Index
+
+| Agent task | Required context |
+|---|---|
+| Orient in the repo | `AGENT_START_HERE.md`, then `AGENTS.md` |
+| Change `01-headless-cli` | `01-headless-cli/AGENTS.md` and `skills/ledger-headless-attestation/SKILL.md` |
+| Change `02-dmk-skills-app` | `02-dmk-skills-app/AGENTS.md` and `skills/ledger-app-gate/SKILL.md` |
+| Change `03-hardware-auth` | `03-hardware-auth/AGENTS.md` and `skills/ledger-auth-sensitive-access/SKILL.md` |
+| Change `04-comprehensive-workflow` | `04-comprehensive-workflow/AGENTS.md` and `skills/comprehensive-ledger-workflow/SKILL.md` |
+| Add evidence | `contracts/EVIDENCE_CONTRACT.md` |
+| Change repo structure | `AGENTS.md`, `docs/BUILDER_LADDER.md`, and `docs/PUBLISHING.md` |
+
+## Agent Skill Guidance
+
+Agents should treat files under `skills/` as operating instructions, not optional documentation.
+
+Before editing a demo, an agent should:
+
+1. Read `AGENT_START_HERE.md`.
+2. Read the target demo's `AGENTS.md`.
+3. Read the matching `skills/<skill-name>/SKILL.md`.
+4. State the target demo, builder level, files to touch, approval boundary, and expected evidence.
+5. Implement only inside that stated scope.
+6. Run the relevant validation command before handing work back.
+
+This keeps agents from flattening the scaffold, skipping the Ledger layer, or overstating fixture evidence as real hardware proof.
 
 ## Repository Shape
 
-This project is intended to publish as one open-source scaffold repo. The demos share one evidence contract, one builder ladder, one governance model, and one validation command, so keeping them together makes extension and comparison easier.
+This is intentionally one repo. The demos share one evidence contract, one builder ladder, one validation command, and one set of agent skills.
 
 Split a demo into its own repo only after it has an independent runtime, release path, maintainer, or audience. Until then, the numbered folders should stay together as one inspectable ladder.
 
-## Demo Status
-
-| Demo | Status | Default mode |
-|---|---|---|
-| `01-headless-cli` | Scaffolded and checkable | Dry-run proposal with Ledger validation path |
-| `02-dmk-skills-app` | Scaffolded and checkable | Fixture-backed app gate |
-| `03-hardware-auth` | Scaffolded and checkable | WebAuthn/auth scaffold with fixture validation |
-| `04-comprehensive-workflow` | Scaffolded, not fully tested end to end | Workflow map plus fixtures |
-
-## Repo Guidance
-
-- `AGENTS.md` defines how agents and humans should work in this repo.
-- `docs/LEDGER_LAYERING.md` defines the default Ledger layers used by every demo.
-- `docs/BUILDER_LADDER.md` explains the entry/intermediate/advanced model.
-- `docs/GOVERNANCE.md` keeps the governance layer lightweight and evidence-oriented.
-- `docs/PUBLISHING.md` explains the recommended public repo shape and pre-push checks.
-- `contracts/EVIDENCE_CONTRACT.md` defines receipt expectations.
-- `docs/AGENT_ASSIGNMENT_TEMPLATE.md` is a copyable brief for targeted agent work.
-- `skills/<skill-name>/SKILL.md` files give agents demo-specific operating rules.
-
-## Check
+## Commands
 
 ```bash
 npm run check
+npm run check:headless
+npm run demo:comprehensive
+npm run demo:dmk:fixture
 ```
 
-The check verifies the scaffold contract and required boundary sections.
+`npm run check` verifies the scaffold contract. `npm run check:headless` exercises the headless receipt path. `npm run demo:comprehensive` writes a combined receipt under `04-comprehensive-workflow/receipts/`.
+
+## Optional Hardware Packages
+
+The first-run template is dependency-light and fixture-backed. If you intentionally want to test the USB Ledger attestation path, install the hardware packages in your generated project:
+
+```bash
+npm install @ledgerhq/hw-app-eth @ledgerhq/hw-transport-node-hid
+```
+
+Then run the non-fixture Ledger validation path from the relevant demo with a connected, unlocked Ledger and the Ethereum app open.
+
+## Boundaries
+
+- Fixture validation is not physical Ledger verification.
+- WebAuthn client evidence is not server verification.
+- Wallet proof is optional and action-specific, not primary identity by default.
+- Agents cannot approve their own sensitive actions.
+- No demo should hide signing, broadcast, secret release, or privileged access behind agent automation.

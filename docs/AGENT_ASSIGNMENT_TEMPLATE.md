@@ -36,7 +36,6 @@ What should a builder understand or be able to run after this change?
 
 - README explains the path.
 - BOUNDARY names real versus mocked behavior.
-- DEMO_SCRIPT still works.
+- README and BUILDER_PATHS still match the implemented flow.
 - `npm run check` passes.
 ```
-

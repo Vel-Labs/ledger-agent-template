@@ -1,7 +1,28 @@
 {
-  "name": "agent-demos",
-  "private": true,
+  "name": "ledger-agent-template",
+  "version": "0.1.0",
+  "description": "Open Ledger agent workflow scaffolds with visible approval gates, fixtures, receipts, and agent skills.",
+  "private": false,
   "type": "module",
+  "bin": {
+    "ledger-agent-template": "bin/ledger-agent-template.mjs"
+  },
+  "files": [
+    "01-headless-cli",
+    "02-dmk-skills-app",
+    "03-hardware-auth",
+    "04-comprehensive-workflow",
+    "contracts",
+    "docs",
+    "scripts",
+    "skills",
+    "bin",
+    "AGENT_START_HERE.md",
+    "AGENTS.md",
+    "LICENSE",
+    "README.md",
+    ".gitignore"
+  ],
   "scripts": {
     "check": "node scripts/validate-scaffold.mjs",
     "check:headless": "cd 01-headless-cli && node src/agent-cli.mjs propose fixtures/send-draft.json && node src/agent-cli.mjs ledger-validate receipts/latest-proposal.json --fixture && node src/agent-cli.mjs approve receipts/latest-proposal.json --human \"scaffold check\"",
@@ -9,8 +30,13 @@
     "demo:dmk": "node 02-dmk-skills-app/src/server.mjs",
     "demo:dmk:fixture": "LEDGER_FIXTURE=1 node 02-dmk-skills-app/src/server.mjs"
   },
-  "dependencies": {
-    "@ledgerhq/hw-app-eth": "^7.8.2",
-    "@ledgerhq/hw-transport-node-hid": "^6.33.2"
-  }
+  "keywords": [
+    "ledger",
+    "agents",
+    "template",
+    "scaffold",
+    "webauthn",
+    "hardware-wallet"
+  ],
+  "license": "MIT"
 }

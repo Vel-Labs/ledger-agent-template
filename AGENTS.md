@@ -17,11 +17,12 @@ Show how people can build agent-assisted Ledger workflows where proposals, appro
 ## Required Reading Before Structural Changes
 
 - `README.md`
+- `AGENT_START_HERE.md`
 - `docs/LEDGER_LAYERING.md`
 - `docs/BUILDER_LADDER.md`
 - `docs/GOVERNANCE.md`
 - `contracts/EVIDENCE_CONTRACT.md`
-- The target demo's `AGENTS.md`, `README.md`, `BOUNDARY.md`, and `DEMO_SCRIPT.md`
+- The target demo's `AGENTS.md`, `README.md`, `BOUNDARY.md`, and `BUILDER_PATHS.md`
 - The matching repo-local skill under `skills/<skill-name>/SKILL.md`
 
 ## Working Rules
@@ -35,7 +36,7 @@ Show how people can build agent-assisted Ledger workflows where proposals, appro
 - Keep beginner paths runnable with local fixtures and no account setup.
 - Put advanced integrations behind explicit install, config, and evidence gates.
 - Update `BOUNDARY.md` when behavior changes.
-- Update `DEMO_SCRIPT.md` when the presenter flow changes.
+- Update the target demo `README.md` and `BUILDER_PATHS.md` when the user-facing flow changes.
 - Add or update receipts when a demo has a new evidence path.
 
 ## Builder Levels

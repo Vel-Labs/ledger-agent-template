@@ -30,7 +30,7 @@ The root `npm run check` command validates the current scaffold contract.
 
 ## Clarity
 
-Each demo should have a presenter flow in `DEMO_SCRIPT.md` and builder levels in `BUILDER_PATHS.md`.
+Each demo should keep its user-facing flow in `README.md` and its extension path in `BUILDER_PATHS.md`.
 
 Beginner-facing docs should stay short. Advanced detail belongs in builder paths, contracts, or optional docs.
 
@@ -39,7 +39,7 @@ Beginner-facing docs should stay short. Advanced detail belongs in builder paths
 Use the smallest file that captures the change:
 
 - Behavior change: update source and `BOUNDARY.md`.
-- Presenter flow change: update `DEMO_SCRIPT.md`.
+- User-facing flow change: update the target demo `README.md` and `BUILDER_PATHS.md`.
 - Audience path change: update `BUILDER_PATHS.md`.
 - Evidence change: update `contracts/EVIDENCE_CONTRACT.md` or receipts.
 - Cross-demo policy change: update `AGENTS.md` or this file.

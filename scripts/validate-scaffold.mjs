@@ -21,7 +21,6 @@ const requiredDemoFiles = [
   "AGENTS.md",
   "README.md",
   "BOUNDARY.md",
-  "DEMO_SCRIPT.md",
   "BUILDER_PATHS.md"
 ];
 
