@@ -1,0 +1,21 @@
+{
+  "id": "lane-05-feedback",
+  "title": "Dogfood feedback receipt",
+  "status": "passed",
+  "sourceDemo": "04-comprehensive-workflow",
+  "flow": "comprehensive_workflow_fixture_run",
+  "ledgerLayers": [
+    "security_key_identity",
+    "fresh_ledger_approval",
+    "optional_wallet_proof",
+    "local_offchain_economy",
+    "dogfood_feedback"
+  ],
+  "expectedDevicePrompt": "Each sensitive lane names the Ledger or Security Key prompt that a real implementation must show.",
+  "observedDevicePrompt": "Fixture run only; no physical prompt observed.",
+  "appBelievedState": "All scaffold lanes passed their fixture contract and remain blocked from hidden signing or secret release.",
+  "userObservedState": "Combined receipt generated from local fixtures.",
+  "remainingQuestion": "Replace one fixture lane with a real app or hardware receipt before claiming end-to-end dogfood proof.",
+  "hardwareVerified": false,
+  "createdAt": "2026-05-20T13:43:24.287Z"
+}

@@ -45,8 +45,10 @@ Run:
 ```bash
 npm run check
 npm run check:headless
+npm run demo:comprehensive
 ```
 
 `npm run check` verifies the scaffold contract. `npm run check:headless` exercises the headless CLI receipt path.
+`npm run demo:comprehensive` generates a tandem fixture receipt across all four demo lanes.
 
 Demo 4 is currently a scaffolded workflow map. Do not describe it as fully tested until a real app surface has generated receipts for its identity, approval, optional wallet proof, and feedback lanes.

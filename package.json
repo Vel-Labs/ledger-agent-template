@@ -5,6 +5,7 @@
   "scripts": {
     "check": "node scripts/validate-scaffold.mjs",
     "check:headless": "cd 01-headless-cli && node src/agent-cli.mjs propose fixtures/send-draft.json && node src/agent-cli.mjs ledger-validate receipts/latest-proposal.json --fixture && node src/agent-cli.mjs approve receipts/latest-proposal.json --human \"scaffold check\"",
+    "demo:comprehensive": "node scripts/run-comprehensive-workflow.mjs",
     "demo:dmk": "node 02-dmk-skills-app/src/server.mjs",
     "demo:dmk:fixture": "LEDGER_FIXTURE=1 node 02-dmk-skills-app/src/server.mjs"
   },

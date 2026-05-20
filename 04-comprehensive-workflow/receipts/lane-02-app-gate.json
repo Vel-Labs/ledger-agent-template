@@ -1,0 +1,20 @@
+{
+  "id": "lane-02-app-gate",
+  "title": "Protected app action gate",
+  "status": "passed",
+  "sourceDemo": "02-dmk-skills-app",
+  "intent": "publish_admin_setting",
+  "ledgerLayer": "app_action_to_ledger_hardware_gate",
+  "validationMode": "fixture_ledger_validation",
+  "hardwareVerified": false,
+  "protectedAction": {
+    "label": "Publish setting",
+    "file": "src/app.js",
+    "handler": "publishSetting"
+  },
+  "evidence": {
+    "fixture": "02-dmk-skills-app/fixtures/install-plan.json",
+    "runnableSurface": "npm run demo:dmk:fixture"
+  },
+  "createdAt": "2026-05-20T13:43:24.287Z"
+}

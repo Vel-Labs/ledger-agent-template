@@ -1,0 +1,17 @@
+{
+  "id": "lane-03-auth-sensitive-access",
+  "title": "Hardware identity and sensitive access",
+  "status": "passed",
+  "sourceDemo": "03-hardware-auth",
+  "intent": "sensitive_access",
+  "ledgerLayer": "security_key_identity_and_fresh_secret_gate",
+  "sessionOpenedByAgent": false,
+  "validationMode": "demo_fallback",
+  "hardwareVerified": false,
+  "secretReleased": false,
+  "evidence": {
+    "fixture": "03-hardware-auth/fixtures/auth-policy.json",
+    "browserSurface": "03-hardware-auth/src/index.html"
+  },
+  "createdAt": "2026-05-20T13:43:24.287Z"
+}

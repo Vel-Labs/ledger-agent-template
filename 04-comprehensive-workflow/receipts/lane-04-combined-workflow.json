@@ -1,0 +1,28 @@
+{
+  "id": "lane-04-combined-workflow",
+  "title": "Comprehensive workflow map",
+  "status": "passed",
+  "sourceDemo": "04-comprehensive-workflow",
+  "intent": "combined_identity_approval_wallet_feedback",
+  "ledgerLayer": "workflow_ledger_validation_map",
+  "validationMode": "workflow_ledger_validation_map",
+  "hardwareVerified": false,
+  "workflowLayers": [
+    "security_key_identity",
+    "fresh_ledger_approval",
+    "optional_wallet_proof",
+    "local_offchain_economy",
+    "dogfood_feedback"
+  ],
+  "requiredChecks": [
+    "identity_is_webauthn_first",
+    "wallet_proof_is_optional",
+    "fresh_approval_required_for_sensitive_actions",
+    "feedback_records_device_prompt_and_app_state"
+  ],
+  "evidence": {
+    "fixture": "04-comprehensive-workflow/fixtures/feature-map.json",
+    "boundary": "04-comprehensive-workflow/BOUNDARY.md"
+  },
+  "createdAt": "2026-05-20T13:43:24.287Z"
+}

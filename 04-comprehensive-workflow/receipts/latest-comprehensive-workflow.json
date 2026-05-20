@@ -1,0 +1,68 @@
+{
+  "id": "comprehensive-workflow-1779284604288",
+  "createdAt": "2026-05-20T13:43:24.288Z",
+  "status": "passed",
+  "mode": "fixture_tandem_workflow",
+  "hardwareVerified": false,
+  "signingPerformed": false,
+  "secretReleased": false,
+  "demosExercised": [
+    "01-headless-cli",
+    "02-dmk-skills-app",
+    "03-hardware-auth",
+    "04-comprehensive-workflow"
+  ],
+  "receipts": [
+    {
+      "id": "lane-01-proposal",
+      "title": "Headless proposal and approval",
+      "sourceDemo": "01-headless-cli",
+      "status": "passed",
+      "hardwareVerified": false,
+      "path": "04-comprehensive-workflow/receipts/lane-01-proposal.json"
+    },
+    {
+      "id": "lane-02-app-gate",
+      "title": "Protected app action gate",
+      "sourceDemo": "02-dmk-skills-app",
+      "status": "passed",
+      "hardwareVerified": false,
+      "path": "04-comprehensive-workflow/receipts/lane-02-app-gate.json"
+    },
+    {
+      "id": "lane-03-auth-sensitive-access",
+      "title": "Hardware identity and sensitive access",
+      "sourceDemo": "03-hardware-auth",
+      "status": "passed",
+      "hardwareVerified": false,
+      "path": "04-comprehensive-workflow/receipts/lane-03-auth-sensitive-access.json"
+    },
+    {
+      "id": "lane-04-combined-workflow",
+      "title": "Comprehensive workflow map",
+      "sourceDemo": "04-comprehensive-workflow",
+      "status": "passed",
+      "hardwareVerified": false,
+      "path": "04-comprehensive-workflow/receipts/lane-04-combined-workflow.json"
+    },
+    {
+      "id": "lane-05-feedback",
+      "title": "Dogfood feedback receipt",
+      "sourceDemo": "04-comprehensive-workflow",
+      "status": "passed",
+      "hardwareVerified": false,
+      "path": "04-comprehensive-workflow/receipts/lane-05-feedback.json"
+    }
+  ],
+  "nonClaims": [
+    "This is not production custody readiness.",
+    "This is not physical Ledger verification.",
+    "This is not server-verified WebAuthn.",
+    "No signing, broadcast, wallet movement, or secret release was performed."
+  ],
+  "nextRealProof": [
+    "Run demo 2 in browser with `npm run demo:dmk:fixture`.",
+    "Run demo 3 on localhost and capture WebAuthn receipts.",
+    "Replace one fixture receipt with physical Ledger or server-verified evidence."
+  ]
+}

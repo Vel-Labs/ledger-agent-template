@@ -6,6 +6,16 @@ This folder is a scaffold, not a finished product app. It explains the contract:
 
 For entry, intermediate, and advanced extension ideas, see `BUILDER_PATHS.md`.
 
+## Run The Tandem Fixture
+
+```bash
+npm run demo:comprehensive
+```
+
+The tandem fixture writes one combined receipt to `receipts/latest-comprehensive-workflow.json` and per-lane receipts under `receipts/`.
+
+This is a fixture run across the scaffold contracts. It proves the demos can be composed into one visible workflow map, but it does not prove physical Ledger verification, server-verified WebAuthn, production custody, signing, broadcast, or secret release.
+
 ## Ledger Layer By Default
 
 The comprehensive workflow should show Ledger layers together:
