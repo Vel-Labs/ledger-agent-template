@@ -4,6 +4,14 @@
   "description": "Open Ledger agent workflow scaffolds with visible approval gates, fixtures, receipts, and agent skills.",
   "private": false,
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vel-Labs/ledger-agent-template.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Vel-Labs/ledger-agent-template/issues"
+  },
+  "homepage": "https://github.com/Vel-Labs/ledger-agent-template#readme",
   "bin": {
     "ledger-agent-template": "bin/ledger-agent-template.mjs"
   },
