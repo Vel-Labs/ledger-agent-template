@@ -53,9 +53,9 @@ async function note(rl, prompt, fallback) {
 async function chooseLedgerMode(rl, label) {
   if (autoYes) return false;
   const answer = (await rl.question(
-    `${label}: press Enter for fixture mode, or unlock the Ledger, open the Ethereum app, type "real", and press Enter to submit real USB attestation.\n> `
+    `${label}: unlock the Ledger, open the Ethereum app, then press Enter to submit real USB attestation. Type "demo" for fixture mode.\n> `
   )).trim().toLowerCase();
-  return answer === "real" || answer === "r";
+  return answer !== "demo" && answer !== "fixture";
 }
 
 function step(id, title, status, payload) {

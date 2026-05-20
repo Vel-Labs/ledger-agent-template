@@ -88,7 +88,7 @@ npm run demo:comprehensive:auto
 npm run demo:dmk:fixture
 ```
 
-`npm run check` verifies the scaffold contract. `npm run check:headless` exercises the headless receipt path. `npm run demo:comprehensive` runs and guides each lane before writing a combined receipt under `04-comprehensive-workflow/receipts/`. It can submit real Ledger validation commands after prompting you to unlock the device and open the Ethereum app. `npm run demo:comprehensive:auto` is only for CI or smoke checks where a guided reviewer is not present.
+`npm run check` verifies the scaffold contract. `npm run check:headless` exercises the headless receipt path. `npm run demo:comprehensive` runs and guides each lane before writing a combined receipt under `04-comprehensive-workflow/receipts/`. It assumes real Ledger validation for Ledger lanes after prompting you to unlock the device and open the Ethereum app; type `demo` at that prompt to use fixture mode. `npm run demo:comprehensive:auto` is only for CI or smoke checks where a guided reviewer is not present.
 
 ## Ledger Packages
 
