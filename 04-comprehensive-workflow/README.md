@@ -16,6 +16,8 @@ The guided workflow runs each demo lane and writes one combined receipt to `rece
 
 It runs the headless CLI, starts the app-gate server, opens browser surfaces, prompts before real Ledger submission points, requests the Ethereum or Security Key app when possible, captures reviewer observations, and records what was actually tested. Ledger lanes default to real USB attestation; type `demo` at a Ledger prompt to use fixture mode.
 
+Before the Security Key lane, exit the Ethereum app back to the Ledger dashboard. The harness will request the Security Key app from there and falls back to a manual prompt if the device rejects the request.
+
 Use the automated smoke path only for CI:
 
 ```bash

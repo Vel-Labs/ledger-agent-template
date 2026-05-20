@@ -10,14 +10,15 @@
   "hardwareVerified": false,
   "secretReleased": false,
   "sessionOpenedByAgent": false,
+  "appRequest": null,
   "browser": {
     "attempted": false,
     "reason": "browser_open_disabled"
   },
   "evidence": {
     "fixture": "03-hardware-auth/fixtures/auth-policy.json",
-    "browserUrl": "http://localhost:65368/",
+    "browserUrl": "http://localhost:49297/",
     "serverVerification": false
   },
-  "createdAt": "2026-05-20T15:03:02.591Z"
+  "createdAt": "2026-05-20T15:15:13.698Z"
 }

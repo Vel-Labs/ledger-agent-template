@@ -58,7 +58,7 @@ async function chooseLedgerMode(rl, label) {
   return answer !== "demo" && answer !== "fixture";
 }
 
-async function requestLedgerApp(rl, appName) {
+async function requestLedgerApp(rl, appNames) {
   if (autoYes) {
     return {
       requested: false,
@@ -66,22 +66,28 @@ async function requestLedgerApp(rl, appName) {
     };
   }
 
-  const result = runCommand("node", ["scripts/open-ledger-app.mjs", appName], { cwd: root });
-  if (result.passed) {
-    console.log(`Ledger app request completed: ${appName}`);
-    return {
-      requested: true,
-      appName,
-      command: result
-    };
+  const names = Array.isArray(appNames) ? appNames : [appNames];
+  const attempts = [];
+  for (const appName of names) {
+    const result = runCommand("node", ["scripts/open-ledger-app.mjs", appName], { cwd: root });
+    attempts.push({ appName, command: result });
+    if (result.passed) {
+      console.log(`Ledger app request completed: ${appName}`);
+      return {
+        requested: true,
+        appName,
+        attempts
+      };
+    }
   }
 
-  console.log(`Ledger app request did not complete automatically: ${result.stderr || result.stdout || "unknown error"}`);
-  const proceed = await confirm(rl, `Open ${appName} manually on the Ledger, then continue?`, true);
+  const last = attempts.at(-1)?.command;
+  console.log(`Ledger app request did not complete automatically: ${last?.stderr || last?.stdout || "unknown error"}`);
+  const proceed = await confirm(rl, `Open ${names.join(" or ")} manually on the Ledger, then continue?`, true);
   return {
     requested: true,
-    appName,
-    command: result,
+    appName: names[0],
+    attempts,
     manuallyContinued: proceed
   };
 }
@@ -381,8 +387,10 @@ async function runAuthLane(rl) {
 
   const server = await startStaticServer("03-hardware-auth/src", await getFreePort(), "localhost");
   try {
+    let appRequest = null;
     if (!autoYes) {
-      await requestLedgerApp(rl, "Security Key");
+      await rl.question("Before demo 3, exit the current Ledger app to the dashboard. The app-open request can fail while Ethereum is still foregrounded. Press Enter to request the Security Key app.");
+      appRequest = await requestLedgerApp(rl, ["Security Key", "FIDO U2F"]);
     }
     const browser = openBrowser(server.url);
     const completed = autoYes
@@ -407,6 +415,7 @@ async function runAuthLane(rl) {
       hardwareVerified: autoYes ? false : completed,
       secretReleased: autoYes ? false : completed,
       sessionOpenedByAgent: false,
+      appRequest,
       browser,
       evidence: {
         fixture: "03-hardware-auth/fixtures/auth-policy.json",

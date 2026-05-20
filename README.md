@@ -90,6 +90,8 @@ npm run demo:dmk:fixture
 
 `npm run check` verifies the scaffold contract. `npm run check:headless` exercises the headless receipt path. `npm run demo:comprehensive` runs and guides each lane before writing a combined receipt under `04-comprehensive-workflow/receipts/`. It assumes real Ledger validation for Ledger lanes after prompting you to connect and unlock the device; the harness then requests the Ethereum or Security Key app when possible. Type `demo` at a Ledger prompt to use fixture mode. `npm run demo:comprehensive:auto` is only for CI or smoke checks where a guided reviewer is not present.
 
+When moving from Ethereum signing lanes into the Security Key lane, exit the current Ledger app back to the dashboard before continuing. The harness requests the Security Key app, but that request can fail if Ethereum is still foregrounded.
+
 ## Ledger Packages
 
 This template installs the Ledger hardware packages needed by the USB attestation lanes. Fixture mode remains the default safe path, but the real Ledger path should be available without making builders discover packages by hand.
