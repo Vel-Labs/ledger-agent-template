@@ -1,0 +1,39 @@
+{
+  "id": "proposal-1779284278716",
+  "createdAt": "2026-05-20T13:37:58.716Z",
+  "sourceFixture": "send-draft.json",
+  "action": "send_draft",
+  "ledgerLayer": "proposal_to_ledger_signing_gate",
+  "dryRun": true,
+  "preview": {
+    "network": "ethereum-sepolia",
+    "asset": "ETH",
+    "amount": "0.025",
+    "to": "0x1111111111111111111111111111111111111111",
+    "memo": "Fixture-only demo transfer"
+  },
+  "agentReason": "User asked for a safe preview of a small testnet send.",
+  "riskNotes": [
+    "Recipient is a fixture address.",
+    "Amount and fee are not live chain quotes.",
+    "No signing or broadcast is allowed in scaffold mode."
+  ],
+  "approval": {
+    "required": true,
+    "status": "pending_human_review"
+  },
+  "ledgerValidation": {
+    "required": true,
+    "status": "pending_ledger_message_attestation",
+    "expectedDevicePrompt": "Ledger would show Sepolia ETH send preview for 0x1111...1111"
+  },
+  "signing": {
+    "status": "blocked_until_human_approval",
+    "performed": false
+  },
+  "hardware": {
+    "ledgerRequiredForRealSigning": true,
+    "verified": false,
+    "mode": "dry_run_proposal_requires_ledger_attestation"
+  }
+}

@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hardware Auth Scaffold</title>
+    <link rel="stylesheet" href="./styles.css">
+    <style>
+      html,
+      body {
+        background: #ffffff;
+        color: #1f2933;
+        font: 16px/1.5 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        margin: 0;
+        min-height: 100vh;
+      }
+
+      main {
+        margin: 48px auto;
+        max-width: 720px;
+        padding: 0 24px;
+      }
+
+      section {
+        border-top: 1px solid #d8dee4;
+        padding: 20px 0;
+      }
+
+      button {
+        margin: 8px 8px 0 0;
+        padding: 10px 14px;
+      }
+
+      button:disabled {
+        cursor: not-allowed;
+        opacity: 0.55;
+      }
+
+      pre {
+        background: #f6f8fa;
+        overflow: auto;
+        padding: 12px;
+      }
+
+      .test-notes,
+      .summary {
+        background: #eef6ff;
+        border: 1px solid #b6d7f5;
+        margin: 12px 0;
+        padding: 12px;
+      }
+
+      .receipt-grid {
+        display: grid;
+        gap: 16px;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      }
+
+      .receipt-grid h3 {
+        margin-bottom: 8px;
+      }
+
+      .muted {
+        color: #52616f;
+      }
+
+      @media (max-width: 760px) {
+        .receipt-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Hardware Auth Gate</h1>
+      <p class="muted">Session auth and secret access are intentionally separate.</p>
+
+      <section>
+        <h2>Session</h2>
+        <p class="muted">Before registering or signing in, unlock the Ledger and open the Security Key app on the device.</p>
+        <p id="session-status">No authenticated session.</p>
+        <button id="signin">Register or sign in with Security Key</button>
+      </section>
+
+      <section>
+        <h2>Sensitive Action</h2>
+        <div class="test-notes">
+          <strong>Test order:</strong>
+          Sign in with Security Key, run Ledger validation, let the agent request the secret, then approve secret access.
+          Each step should unlock the next control and update the receipt below.
+        </div>
+        <button id="validate-session" disabled>Run Ledger validation</button>
+        <button id="request-secret" disabled>Agent requests secret</button>
+        <button id="approve-secret" disabled>Approve secret access</button>
+      </section>
+
+      <section>
+        <h2>Receipt</h2>
+        <div class="receipt-grid">
+          <div>
+            <h3>Human Summary</h3>
+            <div id="summary" class="summary" aria-live="polite">No receipt yet.</div>
+          </div>
+          <div>
+            <h3>Agent JSON</h3>
+            <pre id="receipt">No receipt yet.</pre>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

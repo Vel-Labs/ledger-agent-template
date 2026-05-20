@@ -1,0 +1,8 @@
+{
+  "demo": "hardware-auth",
+  "ledgerLayer": "security_key_identity_and_fresh_secret_gate",
+  "sessionGate": "Security Key/FIDO2 sign-in",
+  "secretGate": "Fresh device confirmation before decrypting or releasing a sensitive value",
+  "agentBoundary": "The agent can request access but cannot create a new authenticated session or bypass the device gate.",
+  "optionalLane": "OpenPGP smart-card decrypt can replace the placeholder decrypted secret value after fresh Security Key approval."
+}

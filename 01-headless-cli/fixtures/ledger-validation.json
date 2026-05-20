@@ -1,0 +1,13 @@
+{
+  "mode": "ledger_message_attestation",
+  "intent": "send_testnet_funds",
+  "requiredChecks": [
+    "proposal_is_dry_run",
+    "human_approval_required",
+    "signing_is_blocked",
+    "expected_device_prompt_present",
+    "usb_ledger_signs_attestation_message"
+  ],
+  "fixtureFallback": "Use --fixture only for CI or no-device walkthroughs.",
+  "realReplacement": "Physical Ledger transaction review and signing confirmation behind an explicit live mode."
+}

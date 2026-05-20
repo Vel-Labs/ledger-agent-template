@@ -1,0 +1,21 @@
+{
+  "id": "ledger-validation-1779284278757",
+  "validatedAt": "2026-05-20T13:37:58.757Z",
+  "proposalId": "proposal-1779284278716",
+  "action": "send_draft",
+  "intent": "send_draft",
+  "ledgerLayer": "proposal_to_ledger_signing_gate",
+  "mode": "fixture_ledger_validation",
+  "validationMode": "fixture_ledger_validation",
+  "status": "passed",
+  "validationStatus": "passed",
+  "hardwareVerified": false,
+  "expectedDevicePrompt": "Ledger would show Sepolia ETH send preview for 0x1111...1111",
+  "checked": {
+    "dryRunRequired": true,
+    "approvalRequired": true,
+    "signingBlocked": true,
+    "expectedDevicePrompt": "Ledger would show Sepolia ETH send preview for 0x1111...1111"
+  },
+  "nextGate": "human_approval_then_physical_ledger_confirmation_for_real_signing"
+}

@@ -1,0 +1,13 @@
+{
+  "mode": "webauthn_security_key_assertion",
+  "intent": "release_sensitive_secret_after_human_presence",
+  "requiredChecks": [
+    "security_key_session_opened",
+    "security_key_validation_completed",
+    "agent_created_session_false",
+    "fresh_security_key_approval_required_for_secret",
+    "receipt_separates_session_from_secret_access"
+  ],
+  "serverVerificationBoundary": "This static demo captures client-side WebAuthn evidence. Production builds must use server-generated challenges and server-side response verification.",
+  "advancedReplacement": "Server-verified WebAuthn challenge and optional OpenPGP smart-card decrypt."
+}

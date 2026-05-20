@@ -1,0 +1,12 @@
+{
+  "mode": "fixture_ledger_validation",
+  "intent": "publish_admin_setting",
+  "requiredChecks": [
+    "protected_action_declared",
+    "app_state_blocked_before_validation",
+    "approval_required_after_validation",
+    "receipt_labels_hardware_verified_false"
+  ],
+  "realReplacement": "Official Ledger toolkit or skill adapter that returns a verified approval result."
+}
+

@@ -1,0 +1,17 @@
+{
+  "action": "send_draft",
+  "ledgerLayer": "proposal_to_ledger_signing_gate",
+  "network": "ethereum-sepolia",
+  "asset": "ETH",
+  "amount": "0.025",
+  "to": "0x1111111111111111111111111111111111111111",
+  "memo": "Fixture-only demo transfer",
+  "dryRun": true,
+  "expectedDevicePrompt": "Ledger would show Sepolia ETH send preview for 0x1111...1111",
+  "agentReason": "User asked for a safe preview of a small testnet send.",
+  "riskNotes": [
+    "Recipient is a fixture address.",
+    "Amount and fee are not live chain quotes.",
+    "No signing or broadcast is allowed in scaffold mode."
+  ]
+}

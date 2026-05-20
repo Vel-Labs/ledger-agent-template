@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DMK Skills App Scaffold</title>
+    <link rel="stylesheet" href="./styles.css">
+    <style>
+      html,
+      body {
+        background: #ffffff;
+        color: #1f2933;
+        font: 16px/1.5 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        margin: 0;
+        min-height: 100vh;
+      }
+
+      main {
+        margin: 48px auto;
+        max-width: 720px;
+        padding: 0 24px;
+      }
+
+      section {
+        border-top: 1px solid #d8dee4;
+        padding: 20px 0;
+      }
+
+      label,
+      input,
+      button {
+        display: block;
+      }
+
+      input {
+        box-sizing: border-box;
+        margin-top: 8px;
+        max-width: 520px;
+        padding: 10px;
+        width: 100%;
+      }
+
+      button {
+        margin-top: 12px;
+        padding: 10px 14px;
+      }
+
+      button:disabled {
+        cursor: not-allowed;
+        opacity: 0.55;
+      }
+
+      pre {
+        background: #f6f8fa;
+        overflow: auto;
+        padding: 12px;
+      }
+
+      .summary {
+        background: #eef6ff;
+        border: 1px solid #b6d7f5;
+        margin-top: 16px;
+        padding: 12px;
+      }
+
+      .muted {
+        color: #52616f;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Protected App Action</h1>
+      <p class="muted">One action is blocked until the local server captures a Ledger device attestation and a human approval.</p>
+
+      <section>
+        <h2>Setting</h2>
+        <label>
+          Production banner
+          <input id="setting" value="Maintenance window at 19:00 UTC">
+        </label>
+      </section>
+
+      <section>
+        <h2>Hardware Gate</h2>
+        <p class="muted">Before running validation, connect and unlock the Ledger signer, then open the Ethereum app on the device.</p>
+        <p id="gate-status">Status: pending Ledger validation</p>
+        <button id="validate">Run Ledger validation</button>
+        <button id="approve" disabled>Simulate Ledger approval</button>
+      </section>
+
+      <section>
+        <h2>Protected Action</h2>
+        <button id="publish" disabled>Publish setting</button>
+        <div id="summary" class="summary" aria-live="polite">No gate result yet.</div>
+        <pre id="receipt">No receipt yet.</pre>
+      </section>
+    </main>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

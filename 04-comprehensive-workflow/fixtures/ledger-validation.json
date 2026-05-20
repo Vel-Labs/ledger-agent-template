@@ -1,0 +1,16 @@
+{
+  "mode": "workflow_ledger_validation_map",
+  "intents": [
+    "prove_session_identity",
+    "approve_sensitive_app_action",
+    "verify_optional_wallet_move",
+    "record_dogfood_feedback"
+  ],
+  "requiredChecks": [
+    "identity_is_webauthn_first",
+    "wallet_proof_is_optional",
+    "fresh_approval_required_for_sensitive_actions",
+    "feedback_records_device_prompt_and_app_state"
+  ],
+  "realReplacement": "Receipts from a real app workflow for each Ledger-gated intent."
+}

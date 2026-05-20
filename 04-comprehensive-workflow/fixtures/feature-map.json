@@ -1,0 +1,23 @@
+{
+  "demo": "comprehensive-workflow",
+  "positioning": "All pillars in a memorable workflow, not the first teaching surface.",
+  "ledgerLayers": [
+    "security_key_identity",
+    "fresh_ledger_approval",
+    "optional_wallet_proof",
+    "local_offchain_economy",
+    "dogfood_feedback"
+  ],
+  "pillars": {
+    "securityKeyIdentity": "Human proves identity with Security Key/WebAuthn.",
+    "freshApproval": "Sensitive actions require a new hardware-backed approval moment.",
+    "optionalWalletProof": "Wallet proof is additive and only used for wallet-specific actions.",
+    "localState": "App state can remain local/off-chain for safety.",
+    "dogfoodFeedback": "Feedback captures device prompt, app state, and user expectation."
+  },
+  "nonClaims": [
+    "Wallet linking is not primary identity.",
+    "Successful linking is not proof that every signed action verifies correctly.",
+    "Agents cannot independently create sessions or approve sensitive actions."
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "demo": "dmk-skills-app",
+  "ledgerLayer": "app_action_to_ledger_hardware_gate",
+  "officialInstallPath": "Install the official Ledger Agent Toolkit or Ledger-provided skills for the target environment when available.",
+  "agentEdits": [
+    "Identify the protected action handler.",
+    "Add a hardware approval request before the state mutation.",
+    "Persist an approval receipt after the device gate succeeds.",
+    "Keep a dry-run fixture path for demos and tests."
+  ],
+  "protectedAction": {
+    "label": "Publish setting",
+    "file": "src/app.js",
+    "handler": "publishSetting"
+  },
+  "explicitNonClaims": [
+    "This scaffold does not implement DMK.",
+    "This scaffold does not claim DMK verifies WebAuthn.",
+    "This scaffold does not perform real Ledger hardware confirmation."
+  ]
+}
