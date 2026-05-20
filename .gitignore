@@ -4,3 +4,11 @@ node_modules/
 .env.*
 *.log
 *.tgz
+coverage/
+dist/
+.cache/
+.parcel-cache/
+.vite/
+.turbo/
+tmp/
+temp/
