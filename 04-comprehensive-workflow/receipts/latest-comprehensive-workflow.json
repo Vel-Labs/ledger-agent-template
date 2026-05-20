@@ -1,12 +1,12 @@
 {
-  "id": "comprehensive-workflow-1779286263929",
-  "createdAt": "2026-05-20T14:11:03.929Z",
+  "id": "comprehensive-workflow-1779286899705",
+  "createdAt": "2026-05-20T14:21:39.705Z",
   "status": "passed",
-  "mode": "guided_fixture_tandem_workflow",
+  "mode": "auto_function_tandem_workflow",
   "hardwareVerified": false,
   "signingPerformed": false,
   "secretReleased": false,
-  "reviewerGuided": true,
+  "reviewerGuided": false,
   "demosExercised": [
     "01-headless-cli",
     "02-dmk-skills-app",
@@ -20,7 +20,6 @@
       "sourceDemo": "01-headless-cli",
       "status": "passed",
       "hardwareVerified": false,
-      "reviewerAcknowledged": true,
       "path": "04-comprehensive-workflow/receipts/lane-01-proposal.json"
     },
     {
@@ -29,7 +28,6 @@
       "sourceDemo": "02-dmk-skills-app",
       "status": "passed",
       "hardwareVerified": false,
-      "reviewerAcknowledged": true,
       "path": "04-comprehensive-workflow/receipts/lane-02-app-gate.json"
     },
     {
@@ -38,7 +36,6 @@
       "sourceDemo": "03-hardware-auth",
       "status": "passed",
       "hardwareVerified": false,
-      "reviewerAcknowledged": true,
       "path": "04-comprehensive-workflow/receipts/lane-03-auth-sensitive-access.json"
     },
     {
@@ -47,7 +44,6 @@
       "sourceDemo": "04-comprehensive-workflow",
       "status": "passed",
       "hardwareVerified": false,
-      "reviewerAcknowledged": true,
       "path": "04-comprehensive-workflow/receipts/lane-04-combined-workflow.json"
     },
     {
@@ -60,14 +56,14 @@
     }
   ],
   "nonClaims": [
-    "This is not production custody readiness.",
-    "This is not physical Ledger verification.",
-    "This is not server-verified WebAuthn.",
-    "No signing, broadcast, wallet movement, or secret release was performed."
+    "Fixture validation is not physical Ledger verification.",
+    "Browser WebAuthn evidence is not server-verified WebAuthn.",
+    "No transaction broadcast is performed by this harness.",
+    "An agent did not approve its own sensitive action."
   ],
   "nextRealProof": [
-    "Run demo 2 in browser with `npm run demo:dmk:fixture`.",
-    "Run demo 3 on localhost and capture WebAuthn receipts.",
-    "Replace lane 2 with browser receipt"
+    "Run the headless or app-gate lane with real Ledger USB attestation.",
+    "Persist browser WebAuthn receipts from demo 3 instead of summarizing them manually.",
+    "Replace one fixture or browser-observed lane with a persisted real hardware receipt."
   ]
 }

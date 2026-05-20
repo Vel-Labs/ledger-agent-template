@@ -6,16 +6,39 @@
   "intent": "send_draft",
   "ledgerLayer": "proposal_to_ledger_signing_gate",
   "validationMode": "fixture_ledger_validation",
-  "reviewerAcknowledged": true,
-  "reviewerNote": "Proposal checked in guided TTY",
+  "reviewerNote": "Headless proposal, Ledger validation, and approval receipts were generated.",
   "hardwareVerified": false,
-  "signing": {
-    "performed": false,
-    "blockedUntil": "human_approval_and_physical_ledger_confirmation"
+  "signingPerformed": false,
+  "commands": {
+    "propose": {
+      "command": "node src/agent-cli.mjs propose fixtures/send-draft.json",
+      "cwd": "/Users/steven/Workspace/40_Code/client-work/Agent-Demos/01-headless-cli",
+      "exitCode": 0,
+      "stdout": "Proposal written: /Users/steven/Workspace/40_Code/client-work/Agent-Demos/01-headless-cli/receipts/latest-proposal.json\nSigning status: blocked_until_human_approval",
+      "stderr": "",
+      "passed": true
+    },
+    "validate": {
+      "command": "node src/agent-cli.mjs ledger-validate receipts/latest-proposal.json --fixture",
+      "cwd": "/Users/steven/Workspace/40_Code/client-work/Agent-Demos/01-headless-cli",
+      "exitCode": 0,
+      "stdout": "Ledger validation receipt written: /Users/steven/Workspace/40_Code/client-work/Agent-Demos/01-headless-cli/receipts/latest-ledger-validation.json\nLedger validation status: passed",
+      "stderr": "",
+      "passed": true
+    },
+    "approve": {
+      "command": "node src/agent-cli.mjs approve receipts/latest-proposal.json --human auto-fixture-reviewer",
+      "cwd": "/Users/steven/Workspace/40_Code/client-work/Agent-Demos/01-headless-cli",
+      "exitCode": 0,
+      "stdout": "Approval receipt written: /Users/steven/Workspace/40_Code/client-work/Agent-Demos/01-headless-cli/receipts/latest-approval.json\nNo signing was performed.",
+      "stderr": "",
+      "passed": true
+    }
   },
   "evidence": {
-    "fixture": "01-headless-cli/fixtures/send-draft.json",
-    "comparableReceipt": "01-headless-cli/receipts/latest-proposal.json"
+    "proposalReceipt": "01-headless-cli/receipts/latest-proposal.json",
+    "ledgerValidationReceipt": "01-headless-cli/receipts/latest-ledger-validation.json",
+    "approvalReceipt": "01-headless-cli/receipts/latest-approval.json"
   },
-  "createdAt": "2026-05-20T14:10:35.821Z"
+  "createdAt": "2026-05-20T14:21:39.420Z"
 }

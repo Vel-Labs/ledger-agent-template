@@ -6,15 +6,23 @@ This folder is a scaffold, not a finished product app. It explains the contract:
 
 For entry, intermediate, and advanced extension ideas, see `BUILDER_PATHS.md`.
 
-## Run The Tandem Fixture
+## Run The Guided Workflow
 
 ```bash
 npm run demo:comprehensive
 ```
 
-The tandem fixture writes one combined receipt to `receipts/latest-comprehensive-workflow.json` and per-lane receipts under `receipts/`.
+The guided workflow runs each demo lane and writes one combined receipt to `receipts/latest-comprehensive-workflow.json` plus per-lane receipts under `receipts/`.
 
-This is a fixture run across the scaffold contracts. It proves the demos can be composed into one visible workflow map, but it does not prove physical Ledger verification, server-verified WebAuthn, production custody, signing, broadcast, or secret release.
+It runs the headless CLI, starts the app-gate server, opens browser surfaces, prompts before real Ledger submission points, captures reviewer observations, and records what was actually tested.
+
+Use the automated smoke path only for CI:
+
+```bash
+npm run demo:comprehensive:auto
+```
+
+Fixture runs prove the demos can be composed into one visible workflow map, but they do not prove physical Ledger verification, server-verified WebAuthn, production custody, signing, broadcast, or secret release.
 
 ## Ledger Layer By Default
 

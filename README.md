@@ -29,9 +29,9 @@ Read AGENT_START_HERE.md, then use the matching repo-local skill before changing
 | `01-headless-cli` | Agent proposes an operation, human reviews it, signing stays blocked | `npm run check:headless` |
 | `02-dmk-skills-app` | App action waits for Ledger-shaped validation before publish | `npm run demo:dmk:fixture` |
 | `03-hardware-auth` | Security Key/WebAuthn session plus fresh sensitive-access gate | Open the local browser scaffold |
-| `04-comprehensive-workflow` | All lanes composed into one neutral workflow receipt | `npm run demo:comprehensive` |
+| `04-comprehensive-workflow` | Guided run across the headless, app-gate, auth, and workflow-map lanes | `npm run demo:comprehensive` |
 
-The comprehensive workflow is a fixture-level tandem run. It proves the scaffold contracts compose; it does not prove physical Ledger verification, server-verified WebAuthn, production custody, signing, broadcast, wallet movement, or secret release.
+The comprehensive workflow invokes the demo functions lane by lane. It runs the headless CLI, starts the app-gate server, opens browser surfaces, captures reviewer observations, and writes one combined receipt. Fixture runs still do not prove physical Ledger verification, server-verified WebAuthn, production custody, signing, broadcast, wallet movement, or secret release.
 
 ## Human Index
 
@@ -88,7 +88,7 @@ npm run demo:comprehensive:auto
 npm run demo:dmk:fixture
 ```
 
-`npm run check` verifies the scaffold contract. `npm run check:headless` exercises the headless receipt path. `npm run demo:comprehensive` guides a reviewer through every lane before writing a combined receipt under `04-comprehensive-workflow/receipts/`. `npm run demo:comprehensive:auto` is only for CI or smoke checks where a guided reviewer is not present.
+`npm run check` verifies the scaffold contract. `npm run check:headless` exercises the headless receipt path. `npm run demo:comprehensive` runs and guides each lane before writing a combined receipt under `04-comprehensive-workflow/receipts/`. It can submit real Ledger validation commands after prompting you to unlock the device and open the Ethereum app. `npm run demo:comprehensive:auto` is only for CI or smoke checks where a guided reviewer is not present.
 
 ## Ledger Packages
 

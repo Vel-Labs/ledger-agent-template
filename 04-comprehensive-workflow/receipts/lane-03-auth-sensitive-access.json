@@ -5,15 +5,19 @@
   "sourceDemo": "03-hardware-auth",
   "intent": "sensitive_access",
   "ledgerLayer": "security_key_identity_and_fresh_secret_gate",
-  "sessionOpenedByAgent": false,
-  "validationMode": "demo_fallback",
-  "reviewerAcknowledged": true,
-  "reviewerNote": "Auth checked in guided TTY",
+  "validationMode": "browser_static_smoke",
+  "reviewerNote": "Auto mode confirmed the browser auth server responded; it did not complete WebAuthn.",
   "hardwareVerified": false,
   "secretReleased": false,
+  "sessionOpenedByAgent": false,
+  "browser": {
+    "attempted": false,
+    "reason": "browser_open_disabled"
+  },
   "evidence": {
     "fixture": "03-hardware-auth/fixtures/auth-policy.json",
-    "browserSurface": "03-hardware-auth/src/index.html"
+    "browserUrl": "http://127.0.0.1:64123/",
+    "serverVerification": false
   },
-  "createdAt": "2026-05-20T14:10:51.798Z"
+  "createdAt": "2026-05-20T14:21:39.704Z"
 }

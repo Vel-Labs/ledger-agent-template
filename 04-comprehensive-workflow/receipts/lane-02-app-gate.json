@@ -6,17 +6,36 @@
   "intent": "publish_admin_setting",
   "ledgerLayer": "app_action_to_ledger_hardware_gate",
   "validationMode": "fixture_ledger_validation",
-  "reviewerAcknowledged": true,
-  "reviewerNote": "App gate checked in guided TTY",
+  "reviewerNote": "App gate server opened and API validation passed.",
   "hardwareVerified": false,
+  "browser": {
+    "attempted": false,
+    "reason": "browser_open_disabled"
+  },
+  "serverReady": true,
+  "serverLogs": [
+    "DMK skills app demo: http://127.0.0.1:64118/",
+    "Ledger mode: fixture fallback"
+  ],
   "protectedAction": {
     "label": "Publish setting",
     "file": "src/app.js",
     "handler": "publishSetting"
   },
+  "apiReceipt": {
+    "action": "validate_publish_setting_intent",
+    "intent": "publish_admin_setting",
+    "ledgerLayer": "app_action_to_ledger_hardware_gate",
+    "validationMode": "fixture_ledger_validation",
+    "validationStatus": "passed",
+    "hardwareVerified": false,
+    "expectedDevicePrompt": "Ledger would ask reviewer to confirm publishing the setting",
+    "attestationMessage": "DRY RUN LEDGER APP GATE ATTESTATION ONLY\nNo transaction signing or broadcast.\nIntent: publish_admin_setting\nAction: publish_setting\nSetting: agent_review_required",
+    "createdAt": "2026-05-20T14:21:39.694Z"
+  },
   "evidence": {
     "fixture": "02-dmk-skills-app/fixtures/install-plan.json",
-    "runnableSurface": "npm run demo:dmk:fixture"
+    "browserUrl": "http://127.0.0.1:64118/"
   },
-  "createdAt": "2026-05-20T14:10:43.197Z"
+  "createdAt": "2026-05-20T14:21:39.696Z"
 }

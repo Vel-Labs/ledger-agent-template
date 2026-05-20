@@ -3,7 +3,7 @@
   "title": "Dogfood feedback receipt",
   "status": "passed",
   "sourceDemo": "04-comprehensive-workflow",
-  "flow": "comprehensive_workflow_guided_fixture_run",
+  "flow": "comprehensive_workflow_auto_function_run",
   "ledgerLayers": [
     "security_key_identity",
     "fresh_ledger_approval",
@@ -11,11 +11,11 @@
     "local_offchain_economy",
     "dogfood_feedback"
   ],
-  "expectedDevicePrompt": "Each sensitive lane names the Ledger or Security Key prompt that a real implementation must show.",
-  "observedDevicePrompt": "Fixture run only; no physical prompt observed.",
-  "appBelievedState": "Scaffold lanes were reviewed against their fixture contract and remain blocked from hidden signing or secret release.",
-  "userObservedState": "Guided reviewer walkthrough completed.",
-  "remainingQuestion": "Replace lane 2 with browser receipt",
+  "expectedDevicePrompt": "Real Ledger lanes prompt on the Ethereum or Security Key app when enabled.",
+  "observedDevicePrompt": "Auto mode did not observe physical prompts.",
+  "appBelievedState": "Harness ran each demo lane and wrote lane receipts from command/API/browser observations.",
+  "userObservedState": "Auto function run completed.",
+  "remainingQuestion": "Replace one fixture or browser-observed lane with a persisted real hardware receipt.",
   "hardwareVerified": false,
-  "createdAt": "2026-05-20T14:11:03.928Z"
+  "createdAt": "2026-05-20T14:21:39.704Z"
 }

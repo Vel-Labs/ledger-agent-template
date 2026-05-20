@@ -63,6 +63,6 @@ npm run demo:comprehensive:auto
 ```
 
 `npm run check` verifies the scaffold contract. `npm run check:headless` exercises the headless CLI receipt path.
-`npm run demo:comprehensive:auto` generates a tandem fixture receipt across all four demo lanes for CI. For public demo prep, run `npm run demo:comprehensive` and complete the guided prompts.
+`npm run demo:comprehensive:auto` runs the non-interactive smoke path for CI. For public demo prep, run `npm run demo:comprehensive`; it invokes each lane, opens browser surfaces, prompts before real Ledger submission points, and captures reviewer observations in the combined receipt.
 
 Demo 4 is currently a scaffolded workflow map. Do not describe it as fully tested until a real app surface has generated receipts for its identity, approval, optional wallet proof, and feedback lanes.

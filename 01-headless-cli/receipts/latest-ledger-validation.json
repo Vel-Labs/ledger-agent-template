@@ -1,7 +1,7 @@
 {
-  "id": "ledger-validation-1779286206698",
-  "validatedAt": "2026-05-20T14:10:06.698Z",
-  "proposalId": "proposal-1779286206636",
+  "id": "ledger-validation-1779286899374",
+  "validatedAt": "2026-05-20T14:21:39.374Z",
+  "proposalId": "proposal-1779286899332",
   "action": "send_draft",
   "intent": "send_draft",
   "ledgerLayer": "proposal_to_ledger_signing_gate",
